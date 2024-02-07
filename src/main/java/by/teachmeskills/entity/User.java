@@ -8,7 +8,7 @@ public class User implements Serializable {
     public User(){
 
     }
-    public User(String id, String name, String surname, String login, String password) {
+    public User(Long id, String name, String surname, String login, String password) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -16,17 +16,17 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    private String id;
+    private Long id;
     private String name;
     private String surname;
     private String login;
     private String password;
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -84,5 +84,16 @@ public class User implements Serializable {
         result = 31 * result + (login != null ? login.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

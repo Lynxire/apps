@@ -20,35 +20,43 @@ public class FileRepository implements ShopRepository{
 
     @Override
     public void deleteById(Long userId) {
+        for (int i = 0; i < userList.size(); i++) {
+            if(userList.get(i).getId().equals(userId)){
+                userList.remove(i);
+            }
 
+        }
     }
 
     @Override
     public Collection<User> allUsers() {
-        List<User> users = new ArrayList<>();
-        return users;
+        return userList;
     }
-
+    List<User> userList = new ArrayList<>();
 
     public void serializable(Object object){
-        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("src\\main\\resources\\test.txt")))
+        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("src\\main\\resources\\test")))
         {
             oos.writeObject(object);
+
         }
         catch(Exception ex){
 
             System.out.println(ex.getMessage());
         }
+
     }
     public void deserializable(Object object){
-        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("src\\main\\resources\\test.txt")))
+        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("src\\main\\resources\\test")))
         {
             ois.readObject();
 
+
         }
         catch(Exception ex){
 
             System.out.println(ex.getMessage());
         }
+
     }
 }
