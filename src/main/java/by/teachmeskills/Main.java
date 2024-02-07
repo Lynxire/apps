@@ -6,7 +6,7 @@ import by.teachmeskills.repository.ShopRepository;
 
 public class Main {
     public static void main(String[] args) {
-        FileRepository fileRepository = new FileRepository();
+        ShopRepository fileRepository = new FileRepository();
         User user = new User(1L,"Yara","Smit", "Pupa", "1998");
         User user1 = new User(2L,"Yara","Smit", "Pupa", "1998");
         fileRepository.add(user);
