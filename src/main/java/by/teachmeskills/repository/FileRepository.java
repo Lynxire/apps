@@ -22,12 +22,14 @@ public class FileRepository implements ShopRepository{
 
     @Override
     public void deleteById(Long userId) {
+        deserializable(userList);
         for (int i = 0; i < userList.size(); i++) {
             if(userList.get(i).getId().equals(userId)){
                 userList.remove(i);
             }
 
         }
+        serializable(userList);
     }
 
     @Override
