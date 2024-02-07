@@ -16,7 +16,11 @@ public class FileRepository implements ShopRepository{
 
     @Override
     public void add(User user) {
-       userList.add(user);
+
+        userList.add(user);
+        serializable(userList);
+
+
 
     }
 
@@ -31,13 +35,14 @@ public class FileRepository implements ShopRepository{
     }
     @Override
     public Collection<User> allUsers() {
-        return userList;
+        return deserializable(userList);
     }
 
     public void serializable(Object object){
-        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("src\\main\\resources\\test.txt")))
+        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("src\\main\\resources\\test.ser")))
         {
            oos.writeObject(object);
+           oos.close();
 
 
         }
@@ -48,7 +53,7 @@ public class FileRepository implements ShopRepository{
 
     }
     public Collection<User> deserializable(Object object){
-        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("src\\main\\resources\\test.txt")))
+        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("src\\main\\resources\\test.ser")))
         {
             return (Collection<User>) ois.readObject();
 
