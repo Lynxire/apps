@@ -14,7 +14,9 @@ import java.util.List;
 public class FileRepository implements ShopRepository{
     @Override
     public void add(User user) {
-        allUsers().add(user);
+       deserializable(userList);
+       userList.add(user);
+       serializable(userList);
 
     }
 
@@ -30,12 +32,13 @@ public class FileRepository implements ShopRepository{
 
     @Override
     public Collection<User> allUsers() {
+        serializable(userList);
         return userList;
     }
     List<User> userList = new ArrayList<>();
 
     public void serializable(Object object){
-        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("src\\main\\resources\\test")))
+        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("src\\main\\resources\\test.txt")))
         {
             oos.writeObject(object);
 
@@ -47,7 +50,7 @@ public class FileRepository implements ShopRepository{
 
     }
     public Collection<User> deserializable(Object object){
-        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("src\\main\\resources\\test")))
+        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("src\\main\\resources\\test.txt")))
         {
             return (Collection<User>) ois.readObject();
 
