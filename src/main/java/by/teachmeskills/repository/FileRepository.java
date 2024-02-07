@@ -14,35 +14,31 @@ import java.util.List;
 public class FileRepository implements ShopRepository{
     @Override
     public void add(User user) {
-       deserializable(userList);
        userList.add(user);
-       serializable(userList);
 
     }
 
     @Override
     public void deleteById(Long userId) {
-        deserializable(userList);
         for (int i = 0; i < userList.size(); i++) {
             if(userList.get(i).getId().equals(userId)){
                 userList.remove(i);
             }
 
         }
-        serializable(userList);
     }
 
     @Override
     public Collection<User> allUsers() {
-        serializable(userList);
         return userList;
     }
-    List<User> userList = new ArrayList<>();
+   private List<User> userList = new ArrayList<>();
 
     public void serializable(Object object){
         try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("src\\main\\resources\\test.txt")))
         {
-            oos.writeObject(object);
+           oos.writeObject(object);
+
 
         }
         catch(Exception ex){

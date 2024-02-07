@@ -11,8 +11,8 @@ public class Main {
         User user1 = new User(2L,"Yara","Smit", "Pupa", "1998");
         fileRepository.add(user);
         fileRepository.add(user1);
-//        fileRepository.allUsers().forEach(System.out::println);
         fileRepository.deleteById(1L);
+        fileRepository.allUsers().forEach(System.out::println);
 
 
 
