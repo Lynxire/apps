@@ -13,6 +13,7 @@ public class Main {
         fileRepository.add(user1);
 //        fileRepository.allUsers().forEach(System.out::println);
         fileRepository.deleteById(1L);
+        fileRepository.serializable(fileRepository.allUsers());
         fileRepository.allUsers().forEach(System.out::println);
 
     }

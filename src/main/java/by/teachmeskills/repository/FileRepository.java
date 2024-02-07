@@ -46,16 +46,17 @@ public class FileRepository implements ShopRepository{
         }
 
     }
-    public void deserializable(Object object){
+    public Collection<User> deserializable(Object object){
         try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("src\\main\\resources\\test")))
         {
-            ois.readObject();
+            return (Collection<User>) ois.readObject();
 
 
         }
         catch(Exception ex){
 
             System.out.println(ex.getMessage());
+            return new ArrayList<>();
         }
 
     }
