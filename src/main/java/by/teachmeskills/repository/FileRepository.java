@@ -12,11 +12,10 @@ import java.util.Collection;
 import java.util.List;
 
 public class FileRepository implements ShopRepository{
-    private List<User> userList = new ArrayList<>();
 
     @Override
     public void add(User user) {
-
+        List<User> userList = deserializable();
         userList.add(user);
         serializable(userList);
 
@@ -26,16 +25,17 @@ public class FileRepository implements ShopRepository{
 
     @Override
     public void deleteById(Long userId) {
-        for (int i = 0; i < userList.size(); i++) {
-            if(userList.get(i).getId().equals(userId)){
-                userList.remove(i);
+        for (int i = 0; i < deserializable().size(); i++) {
+            if(deserializable().get(i).getId().equals(userId)){
+                deserializable().remove(i);
             }
 
         }
+        serializable(deserializable());
     }
     @Override
     public Collection<User> allUsers() {
-        return deserializable(userList);
+        return deserializable();
     }
 
     public void serializable(Object object){
@@ -52,10 +52,10 @@ public class FileRepository implements ShopRepository{
         }
 
     }
-    public Collection<User> deserializable(Object object){
+    public List<User> deserializable(){
         try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("src\\main\\resources\\test.ser")))
         {
-            return (Collection<User>) ois.readObject();
+            return (List<User>) ois.readObject();
 
 
         }
