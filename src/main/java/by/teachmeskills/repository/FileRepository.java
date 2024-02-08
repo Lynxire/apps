@@ -25,13 +25,9 @@ public class FileRepository implements ShopRepository{
 
     @Override
     public void deleteById(Long userId) {
-        for (int i = 0; i < deserializable().size(); i++) {
-            if(deserializable().get(i).getId().equals(userId)){
-                deserializable().remove(i);
-            }
-
-        }
-        serializable(deserializable());
+        List<User> userList = deserializable();
+        userList.removeIf(user -> user.getId().equals(userId));
+        serializable(userList);
     }
     @Override
     public Collection<User> allUsers() {
