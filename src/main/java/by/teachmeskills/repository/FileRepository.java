@@ -12,43 +12,54 @@ import java.util.Collection;
 import java.util.List;
 
 public class FileRepository implements ShopRepository{
+
     @Override
     public void add(User user) {
-        allUsers().add(user);
+        List<User> userList = deserializable();
+        userList.add(user);
+        serializable(userList);
+
+
 
     }
 
     @Override
     public void deleteById(Long userId) {
-
+        List<User> userList = deserializable();
+        userList.removeIf(user -> user.getId().equals(userId));
+        serializable(userList);
     }
-
     @Override
     public Collection<User> allUsers() {
-        List<User> users = new ArrayList<>();
-        return users;
+        return deserializable();
     }
-
 
     public void serializable(Object object){
-        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("src\\main\\resources\\test.txt")))
+        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("src\\main\\resources\\test.ser")))
         {
-            oos.writeObject(object);
+           oos.writeObject(object);
+           oos.close();
+
+
         }
         catch(Exception ex){
 
             System.out.println(ex.getMessage());
         }
+
     }
-    public void deserializable(Object object){
-        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("src\\main\\resources\\test.txt")))
+    public List<User> deserializable(){
+        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("src\\main\\resources\\test.ser")))
         {
-            ois.readObject();
+            return (List<User>) ois.readObject();
+
 
         }
         catch(Exception ex){
 
             System.out.println(ex.getMessage());
+            return new ArrayList<>();
         }
+
     }
 }
