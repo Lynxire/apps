@@ -23,9 +23,12 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String login = req.getParameter("login");
+        String password = req.getParameter("password");
         User user = new User();
         user.setLogin(login);
+        user.setPassword(password);
         ShopRepository file = new FileRepository();
         file.add(user);
+        System.out.println(file.allUsers());
     }
 }

@@ -35,7 +35,7 @@ public class FileRepository implements ShopRepository{
     }
 
     public void serializable(Object object){
-        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("src\\main\\resources\\test.ser")))
+        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("D:\\Java\\apps\\src\\main\\resources\\test.txt")))
         {
            oos.writeObject(object);
            oos.close();
@@ -49,7 +49,7 @@ public class FileRepository implements ShopRepository{
 
     }
     public List<User> deserializable(){
-        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("src\\main\\resources\\test.ser")))
+        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("D:\\Java\\apps\\src\\main\\resources\\test.txt")))
         {
             return (List<User>) ois.readObject();
 
