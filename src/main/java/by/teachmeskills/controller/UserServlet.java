@@ -1,5 +1,8 @@
 package by.teachmeskills.controller;
 
+import by.teachmeskills.entity.User;
+import by.teachmeskills.repository.FileRepository;
+import by.teachmeskills.repository.ShopRepository;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,5 +18,14 @@ public class UserServlet extends HttpServlet {
         PrintWriter printWriter = resp.getWriter();
         printWriter.write("Привет, Старовойтов Ярослав");
         printWriter.close();
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String login = req.getParameter("login");
+        User user = new User();
+        user.setLogin(login);
+        ShopRepository file = new FileRepository();
+        file.add(user);
     }
 }
