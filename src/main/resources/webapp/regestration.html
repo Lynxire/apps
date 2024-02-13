@@ -10,15 +10,15 @@
 
 <body>
     <div class="reg">
-    <form action="#" method="get">
+    <form action="http://localhost:8080/apps/hello" method="post">
         <div>
             <h2>Регистрация</h2>
-            <p><input type="text" placeholder="name"></p>
-            <p><input type="text" placeholder="login"></p>
-            <p><input type="text" placeholder="password"></p>
+            <p><input type="text" placeholder="name" name="name"></p>
+            <p><input type="text" placeholder="login" name="login"></p>
+            <p><input type="text" placeholder="password" name="password"></p>
             <p><input type="text" placeholder="retry password"></p>
-            <p><input type="text" placeholder="email"></p>
-            <input type="submit" value="Зарегистрировать">
+            <p><input type="text" placeholder="email" name="email"></p>
+            <button type="submit">Зарегистрировать</button>
             
             
             
