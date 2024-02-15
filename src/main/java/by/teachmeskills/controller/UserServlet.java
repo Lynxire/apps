@@ -10,14 +10,14 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Optional;
 
 public class UserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html");
-        PrintWriter printWriter = resp.getWriter();
-        printWriter.write("Привет, Старовойтов Ярослав");
-        printWriter.close();
+        String name = req.getParameter("name");
+        req.setAttribute("name", name);
+        req.getRequestDispatcher("/jsp/Hello.jsp").forward(req,resp);
     }
 
     @Override
@@ -33,6 +33,8 @@ public class UserServlet extends HttpServlet {
         user.setName(name);
         ShopRepository file = new FileRepository();
         file.add(user);
+
+
         System.out.println(file.allUsers());
     }
 }
