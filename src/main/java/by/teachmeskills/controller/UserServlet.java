@@ -27,7 +27,7 @@ public class UserServlet extends HttpServlet {
         String email = req.getParameter("email");
         String name = req.getParameter("name");
         User user = new User();
-        user.setLogin(login);
+        user.setId(Long.valueOf(login));
         user.setPassword(password);
         user.setEmail(email);
         user.setName(name);

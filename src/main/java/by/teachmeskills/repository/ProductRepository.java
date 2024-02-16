@@ -12,7 +12,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-public class FileRepository implements ShopRepository{
+public class ProductRepository implements ShopRepository{
 
     @Override
     public void add(Object user) {
@@ -46,10 +46,10 @@ public class FileRepository implements ShopRepository{
     }
 
     public void serializable(Object object){
-        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("C:\\Users\\fined\\IdeaProjects\\apps\\src\\main\\resources\\test.txt")))
+        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("C:\\Users\\fined\\IdeaProjects\\apps\\src\\main\\resources\\product.txt")))
         {
-           oos.writeObject(object);
-           oos.close();
+            oos.writeObject(object);
+            oos.close();
 
 
         }
@@ -60,7 +60,7 @@ public class FileRepository implements ShopRepository{
 
     }
     public List<User> deserializable(){
-        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("C:\\Users\\fined\\IdeaProjects\\apps\\src\\main\\resources\\test.txt")))
+        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream("C:\\Users\\fined\\IdeaProjects\\apps\\src\\main\\resources\\product.txt")))
         {
             return (List<User>) ois.readObject();
 

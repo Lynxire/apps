@@ -22,7 +22,7 @@
   version="6.0"
   metadata-complete="true">
     <welcome-file-list>
-        <welcome-file>login.html</welcome-file>
+        <welcome-file>/html/login.html</welcome-file>
     </welcome-file-list>
 
     <servlet>
@@ -42,5 +42,15 @@
         <servlet-name>Users</servlet-name>
         <url-pattern>/users</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Search</servlet-name>
+        <servlet-class>by.teachmeskills.controller.productEditor.Search</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Search</servlet-name>
+        <url-pattern>/search</url-pattern>
+    </servlet-mapping>
+
 
 </web-app>

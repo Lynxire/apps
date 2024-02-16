@@ -16,6 +16,9 @@ public class Main {
 //        fileRepository.add(user1);
 //        fileRepository.deleteById(1L);
 //        System.out.println(fileRepository.allUsers());
+        ShopRepository shopRepository = new FileRepository();
+        System.out.println(shopRepository.allUsers());
+        System.out.println(shopRepository.findID(3L));
 
 
     }
