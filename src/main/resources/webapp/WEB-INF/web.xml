@@ -21,6 +21,9 @@
                       https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
   version="6.0"
   metadata-complete="true">
+    <welcome-file-list>
+        <welcome-file>/html/login.html</welcome-file>
+    </welcome-file-list>
 
     <servlet>
         <servlet-name>Hello</servlet-name>
@@ -30,5 +33,24 @@
         <servlet-name>Hello</servlet-name>
         <url-pattern>/hello</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Users</servlet-name>
+        <servlet-class>by.teachmeskills.controller.AllUsersServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Users</servlet-name>
+        <url-pattern>/users</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Search</servlet-name>
+        <servlet-class>by.teachmeskills.controller.productEditor.Search</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Search</servlet-name>
+        <url-pattern>/search</url-pattern>
+    </servlet-mapping>
+
 
 </web-app>
