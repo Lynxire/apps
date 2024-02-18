@@ -23,7 +23,7 @@
         </div>
         <!-- Другие поля ввода для редактирования пользователя -->
         <!-- Кнопки для добавления, удаления и поиска -->
-        <button type="submit" class="btn btn-primary">Edit Product</button>
+        <button type="submit" class="btn btn-primary">Add Product</button>
         <button type="button" class="btn btn-danger">Delete Product</button>
         <button type="submit" class="btn btn-info">Search by ID</button>
     </form>
