@@ -56,7 +56,7 @@ public class FileRepository implements ShopRepository{
         }
         catch(Exception ex){
 
-            System.out.println(ex.getMessage());
+            throw new RuntimeException("Вышло исключение: " + ex);
         }
 
     }
@@ -69,8 +69,8 @@ public class FileRepository implements ShopRepository{
         }
         catch(Exception ex){
 
-            System.out.println(ex.getMessage());
-            return new ArrayList<>();
+            throw new RuntimeException("Вышло исключение: " + ex);
+
         }
 
     }
