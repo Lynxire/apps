@@ -15,9 +15,9 @@ import java.util.Optional;
 public class ProductRepository implements ShopRepository{
 
     @Override
-    public void add(Object user) {
+    public void add(Object object) {
         List<User> userList = deserializable();
-        userList.add((User) user);
+        userList.add((User) object);
         serializable(userList);
 
 

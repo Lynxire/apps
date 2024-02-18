@@ -29,6 +29,7 @@ public class FileRepository implements ShopRepository{
         userList.removeIf(user -> user.getId().equals(userId));
         serializable(userList);
     }
+
     @Override
     public Collection<User> allUsers() {
         return deserializable();
