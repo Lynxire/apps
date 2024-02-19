@@ -17,7 +17,10 @@ public class Main {
 //        fileRepository.deleteById(1L);
 //        System.out.println(fileRepository.allUsers());
         ShopRepository shopRepository = new FileRepository();
-        System.out.println(shopRepository.allUsers());
+//        System.out.println(shopRepository.allUsers());
+        FileRepository fileRepository1 = new FileRepository();
+        System.out.println(shopRepository.findID(3L));
+        fileRepository1.usersEdit(3L, "dupa", "lupa", "123", "s@mail.ru");
         System.out.println(shopRepository.findID(3L));
 
 

@@ -6,11 +6,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.nio.file.Files;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 
 public class FileRepository implements ShopRepository{
 
@@ -44,6 +41,22 @@ public class FileRepository implements ShopRepository{
             return null;
         }
         return list;
+    }
+
+    public void usersEdit(Long id, String name, String login, String password, String email)
+    {
+        List<User> userList = findID(id);
+        if (userList != null && !userList.isEmpty()) {
+            User userToUpdate = userList.get(0);
+
+
+            userToUpdate.setName(name);
+            userToUpdate.setLogin(login);
+            userToUpdate.setPassword(password);
+            userToUpdate.setEmail(email);
+
+            serializable(userList);
+        }
     }
 
     public void serializable(Object object){
