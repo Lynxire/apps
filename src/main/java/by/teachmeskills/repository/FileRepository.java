@@ -69,7 +69,7 @@ public class FileRepository implements ShopRepository{
         }
         catch(Exception ex){
 
-            throw new RuntimeException("Вышло исключение: " + ex);
+            throw new RuntimeException("Сериализация пользователей не выполнилась " + ex);
         }
 
     }
@@ -82,7 +82,7 @@ public class FileRepository implements ShopRepository{
         }
         catch(Exception ex){
 
-            throw new RuntimeException("Вышло исключение: " + ex);
+            throw new RuntimeException("Десериализация пользователей не выполнилась " + ex);
 
         }
 

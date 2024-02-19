@@ -55,7 +55,7 @@ public class ProductRepository implements ShopRepository{
         }
         catch(Exception ex){
 
-            throw new RuntimeException("Вышло исключение: " + ex);
+            throw new RuntimeException("Сериализация товаров не выполнилась " + ex);
         }
 
     }
@@ -67,7 +67,7 @@ public class ProductRepository implements ShopRepository{
 
         }
         catch(Exception ex){
-            throw new RuntimeException("Вышло исключение: " + ex);
+            throw new RuntimeException("Десериализация товаров не выполнилась " + ex);
         }
 
     }
