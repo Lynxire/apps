@@ -44,12 +44,12 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>Search</servlet-name>
-        <servlet-class>by.teachmeskills.controller.productEditor.Search</servlet-class>
+        <servlet-name>orderUpdate</servlet-name>
+        <servlet-class>by.teachmeskills.controller.orderUpdate.OrderUpdateServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Search</servlet-name>
-        <url-pattern>/search</url-pattern>
+        <servlet-name>orderUpdate</servlet-name>
+        <url-pattern>/orderUpdate</url-pattern>
     </servlet-mapping>
 
 

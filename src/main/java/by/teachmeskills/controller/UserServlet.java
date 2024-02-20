@@ -2,15 +2,13 @@ package by.teachmeskills.controller;
 
 import by.teachmeskills.entity.User;
 import by.teachmeskills.repository.FileRepository;
-import by.teachmeskills.repository.ShopRepository;
+import by.teachmeskills.repository.UserInterfaceRepository;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Optional;
 
 public class UserServlet extends HttpServlet {
     @Override
@@ -31,7 +29,7 @@ public class UserServlet extends HttpServlet {
         user.setPassword(password);
         user.setEmail(email);
         user.setName(name);
-        ShopRepository file = new FileRepository();
+        UserInterfaceRepository file = new FileRepository();
         file.add(user);
 
 
