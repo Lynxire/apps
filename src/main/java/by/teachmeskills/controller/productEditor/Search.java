@@ -30,5 +30,4 @@ public class Search extends HttpServlet {
         req.getRequestDispatcher("/jsp/ProductEditor.jsp").forward(req,resp);
     }
 
-
 }

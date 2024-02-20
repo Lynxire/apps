@@ -15,9 +15,9 @@ import java.util.Optional;
 public class ProductRepository implements ShopRepository{
 
     @Override
-    public void add(Object user) {
+    public void add(Object object) {
         List<User> userList = deserializable();
-        userList.add((User) user);
+        userList.add((User) object);
         serializable(userList);
 
 
@@ -55,7 +55,7 @@ public class ProductRepository implements ShopRepository{
         }
         catch(Exception ex){
 
-            System.out.println(ex.getMessage());
+            throw new RuntimeException("Сериализация товаров не выполнилась " + ex);
         }
 
     }
@@ -67,9 +67,7 @@ public class ProductRepository implements ShopRepository{
 
         }
         catch(Exception ex){
-
-            System.out.println(ex.getMessage());
-            return new ArrayList<>();
+            throw new RuntimeException("Десериализация товаров не выполнилась " + ex);
         }
 
     }
