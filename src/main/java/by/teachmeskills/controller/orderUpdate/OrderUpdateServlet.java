@@ -42,7 +42,7 @@ public class OrderUpdateServlet extends HttpServlet {
         OrderInterfaceRepository repository = new OrderRepository();
         List<Product> id = repository.findID(Long.valueOf(parameter));
         req.setAttribute("id", id);
-        req.getRequestDispatcher("/jsp/ProductEditor.jsp").forward(req, resp);
+        req.getRequestDispatcher("/jsp/OrderUpdate.jsp").forward(req, resp);
     }
 
     @SneakyThrows
@@ -60,7 +60,7 @@ public class OrderUpdateServlet extends HttpServlet {
         }
         OrderInterfaceRepository repository = new OrderRepository();
         repository.deleteById(Long.valueOf(parameter));
-        req.getRequestDispatcher("/jsp/ProductEditor.jsp").forward(req, resp);
+        req.getRequestDispatcher("/jsp/OrderUpdate.jsp").forward(req, resp);
 
 
     }
@@ -70,7 +70,7 @@ public class OrderUpdateServlet extends HttpServlet {
         OrderInterfaceRepository repository = new OrderRepository();
         Collection<Product> products = repository.allProduct();
         req.setAttribute("products", products);
-        req.getRequestDispatcher("/jsp/ProductEditor.jsp").forward(req, resp);
+        req.getRequestDispatcher("/jsp/OrderUpdate.jsp").forward(req, resp);
     }
 
 

@@ -22,7 +22,7 @@
   version="6.0"
   metadata-complete="true">
     <welcome-file-list>
-        <welcome-file>/html/login.html</welcome-file>
+        <welcome-file>/jsp/login.jsp</welcome-file>
     </welcome-file-list>
 
     <servlet>
