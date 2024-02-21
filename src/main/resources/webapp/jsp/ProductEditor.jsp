@@ -16,20 +16,21 @@
 <div class="container mt-5">
     <h1>Product Management</h1>
     <!-- Форма для редактирования пользователя -->
-    <form method="post" action="http://localhost:8080/apps/search">
+    <form method="post">
         <div class="mb-3">
             <label for="userId" class="form-label">Product ID</label>
             <input type="text" class="form-control" id="userId" name="id">
         </div>
         <!-- Другие поля ввода для редактирования пользователя -->
         <!-- Кнопки для добавления, удаления и поиска -->
-        <button type="submit" class="btn btn-primary">Add Product</button>
-        <button type="button" class="btn btn-danger">Delete Product</button>
-        <button type="submit" class="btn btn-info">Search by ID</button>
+        <button type="submit" class="btn btn-primary" name="add" value="add"  formaction="http://localhost:8080/apps/orderUpdate" formmethod="post">Add Product</button>
+        <button type="submit" class="btn btn-danger" name="delete" formaction="http://localhost:8080/apps/orderUpdate" formmethod="post">Delete Product</button>
+        <button type="submit" class="btn btn-info" name="search" value="search"  formaction="http://localhost:8080/apps/orderUpdate" formmethod="post">Search by ID</button>
+        <button type="submit" class="btn btn-info" name="all" value="all"  formaction="http://localhost:8080/apps/orderUpdate" formmethod="post">All Product</button>
     </form>
 </div>
 ${id}
-
+${products}
 
 
 
