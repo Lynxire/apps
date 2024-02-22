@@ -44,7 +44,7 @@ public class OrderRepository implements OrderInterfaceRepository {
 
 
     public void serializable(Object object) {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("C:\\Users\\fined\\IdeaProjects\\apps\\src\\main\\resources\\orders.txt"))) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("D:\\Java\\apps\\src\\main\\resources\\orders.txt"))) {
             oos.writeObject(object);
             oos.close();
 
@@ -56,7 +56,7 @@ public class OrderRepository implements OrderInterfaceRepository {
     }
 
     public List<Product> deserializable() {
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("C:\\Users\\fined\\IdeaProjects\\apps\\src\\main\\resources\\orders.txt"))) {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("D:\\Java\\apps\\src\\main\\resources\\orders.txt"))) {
             return (List<Product>) ois.readObject();
 
 

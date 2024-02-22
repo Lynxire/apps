@@ -28,6 +28,14 @@
         <button type="submit" class="btn btn-danger" name="delete" formaction="http://localhost:8080/apps/orderUpdate" formmethod="post">Delete Product</button>
         <button type="submit" class="btn btn-info" name="search" value="search"  formaction="http://localhost:8080/apps/orderUpdate" formmethod="post">Search by ID</button>
         <button type="submit" class="btn btn-info" name="all" value="all"  formaction="http://localhost:8080/apps/orderUpdate" formmethod="post">All Product</button>
+        <br>
+        <br>
+        <br>
+        <input type="text" class="" id="sum" name="sum" placeholder="sum">
+        <input type="text" class="" id="code" name="code" placeholder="code">
+        <input type="text" class="" id="name" name="name" placeholder="name">
+        <input type="text" class="" id="quantity" name="quantity" placeholder="quantity">
+
     </form>
 </div>
 ${id}

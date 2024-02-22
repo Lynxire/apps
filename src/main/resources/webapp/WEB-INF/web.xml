@@ -33,15 +33,7 @@
         <servlet-name>Hello</servlet-name>
         <url-pattern>/hello</url-pattern>
     </servlet-mapping>
-
-    <servlet>
-        <servlet-name>Users</servlet-name>
-        <servlet-class>by.teachmeskills.controller.AllUsersServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Users</servlet-name>
-        <url-pattern>/users</url-pattern>
-    </servlet-mapping>
+    
 
     <servlet>
         <servlet-name>orderUpdate</servlet-name>
@@ -50,6 +42,15 @@
     <servlet-mapping>
         <servlet-name>orderUpdate</servlet-name>
         <url-pattern>/orderUpdate</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>users</servlet-name>
+        <servlet-class>by.teachmeskills.controller.users.UsersServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>users</servlet-name>
+        <url-pattern>/users</url-pattern>
     </servlet-mapping>
 
 

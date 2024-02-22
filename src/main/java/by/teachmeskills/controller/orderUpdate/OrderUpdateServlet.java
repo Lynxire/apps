@@ -1,8 +1,11 @@
 package by.teachmeskills.controller.orderUpdate;
 
 import by.teachmeskills.entity.Product;
+import by.teachmeskills.entity.User;
+import by.teachmeskills.repository.FileRepository;
 import by.teachmeskills.repository.OrderInterfaceRepository;
 import by.teachmeskills.repository.OrderRepository;
+import by.teachmeskills.repository.UserInterfaceRepository;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -47,7 +50,22 @@ public class OrderUpdateServlet extends HttpServlet {
 
     @SneakyThrows
     private void add(HttpServletRequest req, HttpServletResponse resp) {
-        req.getRequestDispatcher("/jsp/AddOrder.jsp").forward(req, resp);
+        String sum = req.getParameter("sum");
+        String code = req.getParameter("code");
+        String name = req.getParameter("name");
+        String quantity = req.getParameter("quantity");
+        if(sum.isEmpty() || code.isEmpty() || name.isEmpty() || quantity.isEmpty()){
+            req.getRequestDispatcher("/html/Eror.html").forward(req, resp);
+        }
+        Product order = new Product();
+        order.setId(1L);
+        order.setSum(Integer.parseInt(sum));
+        order.setCode(Integer.parseInt(code));
+        order.setName(name);
+        order.setQuantity(Integer.parseInt(quantity));
+        OrderInterfaceRepository orderRepository = new OrderRepository();
+        orderRepository.add(order);
+        req.getRequestDispatcher("/jsp/OrderUpdate.jsp").forward(req, resp);
 
 
     }
