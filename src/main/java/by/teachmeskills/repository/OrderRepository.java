@@ -15,6 +15,8 @@ public class OrderRepository implements OrderInterfaceRepository {
     @Override
     public void add(Object object) {
         List<Product> productList = deserializable();
+        long l = productList.stream().mapToLong(Product::getId).max().orElse(0);
+        ((Product) object).setId(l+1);
         productList.add((Product) object);
         serializable(productList);
     }

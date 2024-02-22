@@ -58,12 +58,11 @@ public class OrderUpdateServlet extends HttpServlet {
             req.getRequestDispatcher("/html/Eror.html").forward(req, resp);
         }
         Product order = new Product();
-        order.setId(1L);
+        OrderInterfaceRepository orderRepository = new OrderRepository();
         order.setSum(Integer.parseInt(sum));
         order.setCode(Integer.parseInt(code));
         order.setName(name);
         order.setQuantity(Integer.parseInt(quantity));
-        OrderInterfaceRepository orderRepository = new OrderRepository();
         orderRepository.add(order);
         req.getRequestDispatcher("/jsp/OrderUpdate.jsp").forward(req, resp);
 
