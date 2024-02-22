@@ -1,4 +1,4 @@
-package by.teachmeskills.controller;
+package by.teachmeskills.trash;
 
 import by.teachmeskills.entity.User;
 import by.teachmeskills.repository.FileRepository;

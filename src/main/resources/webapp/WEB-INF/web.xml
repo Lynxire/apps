@@ -27,7 +27,7 @@
 
     <servlet>
         <servlet-name>Hello</servlet-name>
-        <servlet-class>by.teachmeskills.controller.UserServlet</servlet-class>
+        <servlet-class>by.teachmeskills.trash.UserServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Hello</servlet-name>
@@ -36,12 +36,12 @@
     
 
     <servlet>
-        <servlet-name>orderUpdate</servlet-name>
-        <servlet-class>by.teachmeskills.controller.orderUpdate.OrderUpdateServlet</servlet-class>
+        <servlet-name>productUpdate</servlet-name>
+        <servlet-class>by.teachmeskills.controller.DispatcherServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>orderUpdate</servlet-name>
-        <url-pattern>/orderUpdate</url-pattern>
+        <servlet-name>productUpdate</servlet-name>
+        <url-pattern>/productUpdate</url-pattern>
     </servlet-mapping>
     
     <servlet>

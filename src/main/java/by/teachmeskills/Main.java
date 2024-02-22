@@ -1,16 +1,14 @@
 package by.teachmeskills;
 
 import by.teachmeskills.entity.Product;
-import by.teachmeskills.repository.FileRepository;
 import by.teachmeskills.repository.OrderInterfaceRepository;
-import by.teachmeskills.repository.OrderRepository;
-import by.teachmeskills.repository.UserInterfaceRepository;
+import by.teachmeskills.repository.ProductRepository;
 
 import java.io.*;
 
 public class Main {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        OrderInterfaceRepository fileRepository = new OrderRepository();
+        OrderInterfaceRepository fileRepository = new ProductRepository();
 //        User user = new User();
 //        user.setId(3L);
 //        user.setName("Yara");

@@ -24,10 +24,10 @@
         </div>
         <!-- Другие поля ввода для редактирования пользователя -->
         <!-- Кнопки для добавления, удаления и поиска -->
-        <button type="submit" class="btn btn-primary" name="add" value="add"  formaction="http://localhost:8080/apps/orderUpdate" formmethod="post">Add Product</button>
-        <button type="submit" class="btn btn-danger" name="delete" formaction="http://localhost:8080/apps/orderUpdate" formmethod="post">Delete Product</button>
-        <button type="submit" class="btn btn-info" name="search" value="search"  formaction="http://localhost:8080/apps/orderUpdate" formmethod="post">Search by ID</button>
-        <button type="submit" class="btn btn-info" name="all" value="all"  formaction="http://localhost:8080/apps/orderUpdate" formmethod="post">All Product</button>
+        <button type="submit" class="btn btn-primary" name="add" value="add"  formaction="http://localhost:8080/apps/productUpdate" formmethod="post">Add Product</button>
+        <button type="submit" class="btn btn-danger" name="delete" formaction="http://localhost:8080/apps/productUpdate" formmethod="post">Delete Product</button>
+        <button type="submit" class="btn btn-info" name="search" value="search"  formaction="http://localhost:8080/apps/productUpdate" formmethod="post">Search by ID</button>
+        <button type="submit" class="btn btn-info" name="all" value="all"  formaction="http://localhost:8080/apps/productUpdate" formmethod="post">All Product</button>
         <br>
         <br>
         <br>
