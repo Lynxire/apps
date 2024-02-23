@@ -22,34 +22,35 @@
   version="6.0"
   metadata-complete="true">
     <welcome-file-list>
-        <welcome-file>/html/login.html</welcome-file>
+        <welcome-file>/jsp/login.jsp</welcome-file>
     </welcome-file-list>
 
     <servlet>
         <servlet-name>Hello</servlet-name>
-        <servlet-class>by.teachmeskills.controller.UserServlet</servlet-class>
+        <servlet-class>by.teachmeskills.trash.UserServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Hello</servlet-name>
         <url-pattern>/hello</url-pattern>
     </servlet-mapping>
+    
 
     <servlet>
-        <servlet-name>Users</servlet-name>
-        <servlet-class>by.teachmeskills.controller.AllUsersServlet</servlet-class>
+        <servlet-name>productUpdate</servlet-name>
+        <servlet-class>by.teachmeskills.controller.DispatcherServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>Users</servlet-name>
-        <url-pattern>/users</url-pattern>
+        <servlet-name>productUpdate</servlet-name>
+        <url-pattern>/productUpdate</url-pattern>
     </servlet-mapping>
-
+    
     <servlet>
-        <servlet-name>orderUpdate</servlet-name>
-        <servlet-class>by.teachmeskills.controller.orderUpdate.OrderUpdateServlet</servlet-class>
+        <servlet-name>users</servlet-name>
+        <servlet-class>by.teachmeskills.controller.users.UsersServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>orderUpdate</servlet-name>
-        <url-pattern>/orderUpdate</url-pattern>
+        <servlet-name>users</servlet-name>
+        <url-pattern>/users</url-pattern>
     </servlet-mapping>
 
 
