@@ -15,6 +15,7 @@
 </head>
 
 <body>
+<form method="post" action="http://localhost:8080/apps/dispatcherServlet">
 <section class="vh-100 gradient-custom">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
@@ -29,24 +30,25 @@
 
 
                             <div class="form-outline form-white mb-4">
-                                <input type="text" id="typeNameX" class="form-control form-control-lg"/>
+                                <input type="text" id="typeNameX" class="form-control form-control-lg"
+                                name="regName"/>
                                 <label class="form-label" for="typeNameX">Name</label>
                             </div>
                             <div class="form-outline form-white mb-4">
-                                <input type="email" id="typeEmailX" class="form-control form-control-lg"/>
+                                <input type="email" id="typeEmailX" class="form-control form-control-lg" name="regEmail"/>
                                 <label class="form-label" for="typeEmailX">Email</label>
                             </div>
                             <div class="form-outline form-white mb-4">
-                                <input type="text" id="typeLoginlX" class="form-control form-control-lg"/>
+                                <input type="text" id="typeLoginlX" class="form-control form-control-lg" name="regLogin"/>
                                 <label class="form-label" for="typeLoginlX">Login</label>
                             </div>
 
                             <div class="form-outline form-white mb-4">
-                                <input type="password" id="typePasswordX" class="form-control form-control-lg"/>
+                                <input type="password" id="typePasswordX" class="form-control form-control-lg" name="regPassword"/>
                                 <label class="form-label" for="typePasswordX">Password</label>
                             </div>
 
-                            <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+                            <button class="btn btn-outline-light btn-lg px-5" type="submit" name="regSubmit">Registration</button>
 
 
                         </div>
@@ -58,6 +60,7 @@
         </div>
     </div>
 </section>
+</form>
 
 
 </body>

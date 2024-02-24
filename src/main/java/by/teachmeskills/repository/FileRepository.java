@@ -1,5 +1,6 @@
 package by.teachmeskills.repository;
 
+import by.teachmeskills.entity.Product;
 import by.teachmeskills.entity.User;
 
 import java.io.FileInputStream;
@@ -15,6 +16,8 @@ public class FileRepository implements UserInterfaceRepository {
     @Override
     public void add(User user) {
         List<User> userList = deserializable();
+        long l = userList.stream().mapToLong(User::getId).max().orElse(0);
+        user.setId(l+1);
         userList.add(user);
         serializable(userList);
 

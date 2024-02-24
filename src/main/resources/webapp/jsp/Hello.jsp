@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="java.util.*" %>
 <%@ page import="by.teachmeskills.entity.*" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 
 <head>
@@ -8,15 +10,13 @@
 </head>
 
 <body>
-<div>
-    <form method="get" action="http://localhost:8080/apps/hello">
-        <div>
-            <p><input type="text" placeholder="name" name="name"></p>
-            <button type="submit">Привет</button>
-        </div>
-    </form>
-</div>
-${name}
+<table>
+    <c:forEach var="email" items="${email}">
+        <tr>
+            <td>Привет: ${email}</td>
+        </tr>
+    </c:forEach>
+</table>
 
 
 
