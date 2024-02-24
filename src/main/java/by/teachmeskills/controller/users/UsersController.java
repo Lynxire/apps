@@ -1,6 +1,7 @@
 package by.teachmeskills.controller.users;
 
 import by.teachmeskills.api.users.UserRequest;
+import by.teachmeskills.entity.User;
 import by.teachmeskills.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -31,12 +32,12 @@ public class UsersController {
         if(email.isEmpty()||password.isEmpty()){
             req.getRequestDispatcher("/html/Eror.html").forward(req, resp);
         }
-        UserRequest userRequest = new UserRequest();
+        User user = new User();
         UserService userService = new UserService();
-        userRequest.setEmail(email);
-        userRequest.setPassword(password);
-        req.setAttribute("email", userRequest.getEmail());
-        boolean authentication = userService.authentication(userRequest);
+        user.setEmail(email);
+        user.setPassword(password);
+        boolean authentication = userService.authentication(user);
+        req.setAttribute("user", user.getEmail());
         if (!authentication){
             req.getRequestDispatcher("/html/Eror.html").forward(req, resp);
         }
