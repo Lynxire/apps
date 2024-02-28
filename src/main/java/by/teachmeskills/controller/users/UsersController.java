@@ -38,10 +38,10 @@ public class UsersController {
         user.setPassword(password);
         boolean authentication = userService.authentication(user);
         req.setAttribute("user", user.getEmail());
-        if (!authentication){
-            req.getRequestDispatcher("/html/Eror.html").forward(req, resp);
+        if (authentication){
+            req.getRequestDispatcher("/jsp/Hello.jsp").forward(req, resp);
         }
-        req.getRequestDispatcher("/jsp/Hello.jsp").forward(req, resp);
+        req.getRequestDispatcher("/html/Eror.html").forward(req, resp);
 
     }
 }
