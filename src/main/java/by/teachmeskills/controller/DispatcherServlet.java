@@ -31,6 +31,8 @@ public class DispatcherServlet extends HttpServlet {
             usersController.registration(req, resp);
         } else if (req.getParameter("logSubmit") != null){
             usersController.authentication(req, resp);
+        } else if (req.getParameter("allUsers") != null) {
+            usersController.all(req, resp);
         }
 
     }
