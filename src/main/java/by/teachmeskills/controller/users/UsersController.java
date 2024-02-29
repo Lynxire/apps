@@ -41,7 +41,7 @@ public class UsersController {
         if(email.isEmpty()||password.isEmpty()){
             req.getRequestDispatcher("/html/Eror.html").forward(req, resp);
         }
-        UserRequest user = new UserRequest();
+        User user = new User();
         UserService userService = new UserService();
         user.setEmail(email);
         user.setPassword(password);
@@ -53,7 +53,6 @@ public class UsersController {
         else {
             req.getRequestDispatcher("/jsp/client.jsp").forward(req, resp);
         }
-        req.getRequestDispatcher("/jsp/Hello.jsp").forward(req, resp);
 
     }
     @SneakyThrows
