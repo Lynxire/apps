@@ -11,12 +11,16 @@ import java.util.Collection;
 import java.util.Optional;
 
 public class UserService {
-    public boolean authentication(User user) {
+    public User authentication(UserRequest userRequest) {
         UserInterfaceRepository repository = new FileRepository();
-        Optional<User> optional = repository.allUsers().stream().filter(user1 -> user1.getEmail().equals(user.getEmail()))
-                .filter(user2 -> user2.getPassword().equals(user.getPassword()))
+        Optional<User> optional = repository.allUsers().stream().filter(user1 -> user1.getEmail().equals(userRequest.getEmail()))
+                .filter(user2 -> user2.getPassword().equals(userRequest.getPassword()))
                 .findFirst();
-        return optional.isPresent();
+        if(!optional.isPresent()){
+            throw new RuntimeException("Пользователь не найден");
+        }
+        UserMapper userMapper = new UserMapper();
+        return userMapper.toEntity(userRequest);
     }
 
     public void registration(UserRequest userRequest) {
@@ -25,8 +29,14 @@ public class UserService {
         UserInterfaceRepository repository = new FileRepository();
         Optional<User> optional = repository.allUsers().stream().filter(user1 -> user1.getLogin().equals(userRequest.getLogin()))
                 .findFirst();
-        if(optional.isPresent()){
-            throw new RuntimeException("Пользователь с таким логином существует");
+        Optional<User> optional1 = repository.allUsers().stream().filter(user1 -> user1.getRole().equals("Admin"))
+                .findFirst();
+
+            if(optional.isPresent()){
+                throw new RuntimeException("Пользователь с таким логином существует");
+            }
+        if(!optional1.isPresent()){
+            user.setRole("Admin");
         }
         repository.add(user);
     }

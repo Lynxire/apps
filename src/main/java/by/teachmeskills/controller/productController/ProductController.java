@@ -65,5 +65,11 @@ public class ProductController{
         Collection<ProductResponse> products = productUpdate.all();
         req.setAttribute("products", products);
         req.getRequestDispatcher("/jsp/ProductUpdate.jsp").forward(req, resp);
+    }@SneakyThrows
+    public void allClient(HttpServletRequest req, HttpServletResponse resp) {
+        ProductUpdate productUpdate = new ProductUpdate();
+        Collection<ProductResponse> products = productUpdate.all();
+        req.setAttribute("products", products);
+        req.getRequestDispatcher("/jsp/client.jsp").forward(req, resp);
     }
 }

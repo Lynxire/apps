@@ -41,16 +41,19 @@ public class UsersController {
         if(email.isEmpty()||password.isEmpty()){
             req.getRequestDispatcher("/html/Eror.html").forward(req, resp);
         }
-        User user = new User();
+        UserRequest user = new UserRequest();
         UserService userService = new UserService();
         user.setEmail(email);
         user.setPassword(password);
-        boolean authentication = userService.authentication(user);
+        User authentication = userService.authentication(user);
         req.setAttribute("user", user.getEmail());
-        if (authentication){
-            req.getRequestDispatcher("/jsp/Hello.jsp").forward(req, resp);
+        if(authentication.getRole().equals("Admin")){
+            req.getRequestDispatcher("/jsp/admin.jsp").forward(req, resp);
         }
-        req.getRequestDispatcher("/html/Eror.html").forward(req, resp);
+        else {
+            req.getRequestDispatcher("/jsp/client.jsp").forward(req, resp);
+        }
+        req.getRequestDispatcher("/jsp/Hello.jsp").forward(req, resp);
 
     }
     @SneakyThrows

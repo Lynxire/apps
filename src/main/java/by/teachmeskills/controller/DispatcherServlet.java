@@ -33,6 +33,8 @@ public class DispatcherServlet extends HttpServlet {
             usersController.authentication(req, resp);
         } else if (req.getParameter("allUsers") != null) {
             usersController.all(req, resp);
+        } else if (req.getParameter("allClient") != null){
+            productController.allClient(req, resp);
         }
 
     }
