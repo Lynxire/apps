@@ -36,22 +36,15 @@
     
 
     <servlet>
-        <servlet-name>productUpdate</servlet-name>
+        <servlet-name>dispatcherServlet</servlet-name>
         <servlet-class>by.teachmeskills.controller.DispatcherServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>productUpdate</servlet-name>
-        <url-pattern>/productUpdate</url-pattern>
+        <servlet-name>dispatcherServlet</servlet-name>
+        <url-pattern>/dispatcherServlet</url-pattern>
     </servlet-mapping>
     
-    <servlet>
-        <servlet-name>users</servlet-name>
-        <servlet-class>by.teachmeskills.controller.users.UsersServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>users</servlet-name>
-        <url-pattern>/users</url-pattern>
-    </servlet-mapping>
+
 
 
 </web-app>

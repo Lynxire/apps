@@ -9,10 +9,10 @@
 
 <body>
 <div>
-    <form method="get" action="http://localhost:8080/apps/users">
+    <form method="post" action="http://localhost:8080/apps/dispatcherServlet">
         <div>
             <h2>Пользователи</h2>
-            <button type="submit">Все пользователи</button>
+            <button type="submit" name="allUsers">Все пользователи</button>
         </div>
     </form>
 

@@ -1,6 +1,7 @@
 package by.teachmeskills.controller;
 
 import by.teachmeskills.controller.productController.ProductController;
+import by.teachmeskills.controller.users.UsersController;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,6 +18,7 @@ public class DispatcherServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ProductController productController = new ProductController();
+        UsersController usersController = new UsersController();
         if (req.getParameter("search") != null) {
             productController.search(req, resp);
         } else if (req.getParameter("add") != null) {
@@ -25,6 +27,14 @@ public class DispatcherServlet extends HttpServlet {
             productController.delete(req, resp);
         } else if (req.getParameter("all") != null) {
             productController.all(req, resp);
+        } else if (req.getParameter("regSubmit") != null) {
+            usersController.registration(req, resp);
+        } else if (req.getParameter("logSubmit") != null){
+            usersController.authentication(req, resp);
+        } else if (req.getParameter("allUsers") != null) {
+            usersController.all(req, resp);
+        } else if (req.getParameter("allClient") != null){
+            productController.allClient(req, resp);
         }
 
     }

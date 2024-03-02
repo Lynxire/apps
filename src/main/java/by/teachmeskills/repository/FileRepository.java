@@ -1,5 +1,6 @@
 package by.teachmeskills.repository;
 
+import by.teachmeskills.entity.Product;
 import by.teachmeskills.entity.User;
 
 import java.io.FileInputStream;
@@ -9,12 +10,15 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 public class FileRepository implements UserInterfaceRepository {
 
     @Override
     public void add(User user) {
         List<User> userList = deserializable();
+        long l = userList.stream().mapToLong(User::getId).max().orElse(0);
+        user.setId(l+1);
         userList.add(user);
         serializable(userList);
 
@@ -74,6 +78,7 @@ public class FileRepository implements UserInterfaceRepository {
 
     public List<User> deserializable() {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("D:\\Java\\apps\\src\\main\\resources\\test.txt"))) {
+
             return (List<User>) ois.readObject();
 
 

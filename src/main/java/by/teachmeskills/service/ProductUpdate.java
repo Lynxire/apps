@@ -42,7 +42,9 @@ public class ProductUpdate {
         OrderInterfaceRepository repository = new ProductRepository();
         ProductMapper productMapper=new ProductMapper();
         Collection<Product> products = repository.allProduct();
-        Collection<ProductResponse>  productResponses=products.stream().map(product ->productMapper.toResponse(product)).toList();
+        Collection<ProductResponse>  productResponses=products.stream()
+                .map(product ->productMapper.toResponse(product)).
+                toList();
         return productResponses;
     }
 
