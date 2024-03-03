@@ -11,6 +11,7 @@ import by.teachmeskills.service.ProductUpdate;
 import by.teachmeskills.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import lombok.SneakyThrows;
 
 import java.util.Collection;
@@ -36,6 +37,8 @@ public class UsersController {
     }
     @SneakyThrows
     public void authentication(HttpServletRequest req, HttpServletResponse resp){
+        HttpSession session  = req.getSession();
+        session.getAttribute("login");
         String email = req.getParameter("logEmail");
         String password = req.getParameter("logPassword");
         if(email.isEmpty()||password.isEmpty()){
@@ -46,7 +49,8 @@ public class UsersController {
         user.setEmail(email);
         user.setPassword(password);
         User authentication = userService.authentication(user);
-        req.setAttribute("user", user.getEmail());
+        session.setAttribute("login", email);
+//        req.setAttribute("user", user.getEmail());
         if(authentication.getRole().equals("Admin")){
             req.getRequestDispatcher("/jsp/admin.jsp").forward(req, resp);
         }
