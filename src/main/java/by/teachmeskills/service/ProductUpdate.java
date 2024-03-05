@@ -1,14 +1,11 @@
 package by.teachmeskills.service;
 
-import by.teachmeskills.api.orders.ProductRequest;
-import by.teachmeskills.api.orders.ProductResponse;
+import by.teachmeskills.api.products.ProductRequest;
+import by.teachmeskills.api.products.ProductResponse;
 import by.teachmeskills.entity.Product;
 import by.teachmeskills.mapper.ProductMapper;
 import by.teachmeskills.repository.OrderInterfaceRepository;
 import by.teachmeskills.repository.ProductRepository;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import lombok.SneakyThrows;
 
 import java.util.Collection;
 

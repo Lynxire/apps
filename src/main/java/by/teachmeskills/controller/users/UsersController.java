@@ -1,13 +1,8 @@
 package by.teachmeskills.controller.users;
 
-import by.teachmeskills.api.orders.ProductResponse;
 import by.teachmeskills.api.users.UserRequest;
 import by.teachmeskills.api.users.UserResponse;
 import by.teachmeskills.entity.User;
-import by.teachmeskills.mapper.UserMapper;
-import by.teachmeskills.repository.FileRepository;
-import by.teachmeskills.repository.UserInterfaceRepository;
-import by.teachmeskills.service.ProductUpdate;
 import by.teachmeskills.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -15,7 +10,6 @@ import jakarta.servlet.http.HttpSession;
 import lombok.SneakyThrows;
 
 import java.util.Collection;
-import java.util.List;
 
 public class UsersController {
     @SneakyThrows

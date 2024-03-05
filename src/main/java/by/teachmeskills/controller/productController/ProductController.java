@@ -1,10 +1,7 @@
 package by.teachmeskills.controller.productController;
 
-import by.teachmeskills.api.orders.ProductRequest;
-import by.teachmeskills.api.orders.ProductResponse;
-import by.teachmeskills.entity.Product;
-import by.teachmeskills.repository.OrderInterfaceRepository;
-import by.teachmeskills.repository.ProductRepository;
+import by.teachmeskills.api.products.ProductRequest;
+import by.teachmeskills.api.products.ProductResponse;
 import by.teachmeskills.service.ProductUpdate;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

@@ -1,10 +1,7 @@
 package by.teachmeskills.mapper;
 
-import by.teachmeskills.api.orders.ProductRequest;
-import by.teachmeskills.api.orders.ProductResponse;
 import by.teachmeskills.api.users.UserRequest;
 import by.teachmeskills.api.users.UserResponse;
-import by.teachmeskills.entity.Product;
 import by.teachmeskills.entity.User;
 
 public class UserMapper {
