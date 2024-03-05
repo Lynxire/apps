@@ -16,8 +16,8 @@
 <body>
 <div class="container vh-100 d-flex justify-content-center align-items-center">
     <div class="row">
-        <button type="button" class="btn btn-primary col-6">Пользователи</button>
-        <button type="button" class="btn btn-secondary col-6">Товары</button>
+        <button type="submit" class="btn btn-primary col-8" formaction="">Пользователи</button>
+        <button type="submit" class="btn btn-secondary col-8"><a style="text-decoration:none; color: white;" href="http://localhost:8080/apps/jsp/admin/ProductUpdate.jsp">Товары</a></button>
     </div>
 </div>
 

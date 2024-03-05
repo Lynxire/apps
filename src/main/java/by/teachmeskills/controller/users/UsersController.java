@@ -55,7 +55,7 @@ public class UsersController {
             req.getRequestDispatcher("/jsp/admin/admin.jsp").forward(req, resp);
         }
         else {
-            req.getRequestDispatcher("/jsp/client.jsp").forward(req, resp);
+            req.getRequestDispatcher("/jsp/client/client.jsp").forward(req, resp);
         }
 
     }
