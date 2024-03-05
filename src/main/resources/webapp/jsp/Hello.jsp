@@ -11,9 +11,9 @@
 
 <body>
 <table>
-    <c:forEach var="users" items="${user}">
+    <c:forEach var="logins" items="${login}">
         <tr>
-            <td>Привет: ${users}</td>
+            <td>Привет: ${logins}</td>
         </tr>
     </c:forEach>
 </table>
