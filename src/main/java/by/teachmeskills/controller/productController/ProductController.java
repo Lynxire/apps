@@ -22,7 +22,7 @@ public class ProductController{
         ProductUpdate productUpdate = new ProductUpdate();
         ProductResponse id = productUpdate.search(Long.valueOf(parameter));
         req.setAttribute("id", id);
-        req.getRequestDispatcher("/jsp/ProductUpdate.jsp").forward(req, resp);
+        req.getRequestDispatcher("/jsp/admin/ProductUpdate.jsp").forward(req, resp);
     }
 
     @SneakyThrows
@@ -41,7 +41,7 @@ public class ProductController{
         order.setName(name);
         order.setQuantity(Integer.parseInt(quantity));
         productUpdate.add(order);
-        req.getRequestDispatcher("/jsp/ProductUpdate.jsp").forward(req, resp);
+        req.getRequestDispatcher("/jsp/admin/ProductUpdate.jsp").forward(req, resp);
 
 
     }
@@ -54,7 +54,7 @@ public class ProductController{
         }
         ProductUpdate productUpdate = new ProductUpdate();
         productUpdate.deleteById(Long.valueOf(parameter));
-        req.getRequestDispatcher("/jsp/ProductUpdate.jsp").forward(req, resp);
+        req.getRequestDispatcher("/jsp/admin/ProductUpdate.jsp").forward(req, resp);
 
 
     }
@@ -64,7 +64,7 @@ public class ProductController{
         ProductUpdate productUpdate = new ProductUpdate();
         Collection<ProductResponse> products = productUpdate.all();
         req.setAttribute("products", products);
-        req.getRequestDispatcher("/jsp/ProductUpdate.jsp").forward(req, resp);
+        req.getRequestDispatcher("/jsp/admin/ProductUpdate.jsp").forward(req, resp);
     }@SneakyThrows
     public void allClient(HttpServletRequest req, HttpServletResponse resp) {
         ProductUpdate productUpdate = new ProductUpdate();

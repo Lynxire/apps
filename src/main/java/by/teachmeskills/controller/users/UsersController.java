@@ -52,7 +52,7 @@ public class UsersController {
         session.setAttribute("login", email);
 //        req.setAttribute("user", user.getEmail());
         if(authentication.getRole().equals("Admin")){
-            req.getRequestDispatcher("/jsp/admin.jsp").forward(req, resp);
+            req.getRequestDispatcher("/jsp/admin/admin.jsp").forward(req, resp);
         }
         else {
             req.getRequestDispatcher("/jsp/client.jsp").forward(req, resp);
