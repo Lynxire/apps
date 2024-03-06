@@ -1,8 +1,11 @@
 package by.teachmeskills.controller.users;
 
+import by.teachmeskills.api.products.ProductRequest;
+import by.teachmeskills.api.products.ProductResponse;
 import by.teachmeskills.api.users.UserRequest;
 import by.teachmeskills.api.users.UserResponse;
 import by.teachmeskills.entity.User;
+import by.teachmeskills.service.ProductUpdate;
 import by.teachmeskills.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -54,10 +57,55 @@ public class UsersController {
 
     }
     @SneakyThrows
-    public void all(HttpServletRequest req, HttpServletResponse resp) {
+        public void all(HttpServletRequest req, HttpServletResponse resp) {
         UserService userService = new UserService();
         Collection<UserResponse> users = userService.all();
         req.setAttribute("users", users);
-        req.getRequestDispatcher("/jsp/AllUsers.jsp").forward(req, resp);
+        req.getRequestDispatcher("/jsp/admin/UserUpdate.jsp").forward(req, resp);
+    }
+
+    @SneakyThrows
+    public void search(HttpServletRequest req, HttpServletResponse resp) {
+        String parameter = req.getParameter("idUser");
+        if (parameter.isEmpty() || parameter.equals("0")) {
+            req.getRequestDispatcher("/html/Eror.html").forward(req, resp);
+        }
+        UserService userService = new UserService();
+        UserResponse id = userService.search(Long.valueOf(parameter));
+        req.setAttribute("idUsers", id);
+        req.getRequestDispatcher("/jsp/admin/UserUpdate.jsp").forward(req, resp);
+    }
+    @SneakyThrows
+    public void     add(HttpServletRequest req, HttpServletResponse resp) {
+        String name = req.getParameter("name");
+        String login = req.getParameter("login");
+        String password = req.getParameter("password");
+        String email = req.getParameter("email");
+        if(login.isEmpty() || password.isEmpty() || name.isEmpty() || email.isEmpty()){
+            req.getRequestDispatcher("/html/Eror.html").forward(req, resp);
+        }
+        UserRequest userRequest = new UserRequest();
+        UserService userService = new UserService();
+        userRequest.setLogin(login);
+        userRequest.setPassword(password);
+        userRequest.setName(name);
+        userRequest.setEmail(email);
+        userService.add(userRequest);
+        req.getRequestDispatcher("/jsp/admin/UserUpdate.jsp").forward(req, resp);
+
+
+    }
+
+    @SneakyThrows
+    public void delete(HttpServletRequest req, HttpServletResponse resp) {
+        String parameter = req.getParameter("idUser");
+        if (parameter.isEmpty()) {
+            req.getRequestDispatcher("/html/Eror.html").forward(req, resp);
+        }
+        UserService userService = new UserService();
+        userService.deleteById(Long.valueOf(parameter));
+        req.getRequestDispatcher("/jsp/admin/UserUpdate.jsp").forward(req, resp);
+
+
     }
 }

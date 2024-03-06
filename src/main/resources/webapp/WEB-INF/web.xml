@@ -34,15 +34,15 @@
         <url-pattern>/dispatcherServlet</url-pattern>
     </servlet-mapping>
 
-    <filter>
-        <filter-name>admin</filter-name>
-        <filter-class>by.teachmeskills.controller.Filter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>admin</filter-name>
-        <servlet-name>dispatcherServlet</servlet-name>
-    </filter-mapping>
-    
+<!--    <filter>-->
+<!--        <filter-name>admin</filter-name>-->
+<!--        <filter-class>by.teachmeskills.controller.Filter</filter-class>-->
+<!--    </filter>-->
+<!--    <filter-mapping>-->
+<!--        <filter-name>admin</filter-name>-->
+<!--        <servlet-name>dispatcherServlet</servlet-name>-->
+<!--    </filter-mapping>-->
+
 
 
 

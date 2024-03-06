@@ -22,6 +22,7 @@ public class UserMapper {
         userResponse.setLogin(user.getLogin());
         userResponse.setId(user.getId());
         userResponse.setPassword(user.getPassword());
+        userResponse.setRole(user.getRole());
         return userResponse;
     }
 }

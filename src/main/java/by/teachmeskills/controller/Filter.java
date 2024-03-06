@@ -24,11 +24,6 @@ public class Filter implements jakarta.servlet.Filter {
         String authentication=req.getParameter("logSubmit");
         if (authentication!=null){
             chain.doFilter(request,response);
-        } else if(user == null || !user.getRole().equals("Admin")){
-            req.getRequestDispatcher("/html/Eror.html").forward(req, response);
-        }
-        else {
-            chain.doFilter(request,response);
         }
     }
 }

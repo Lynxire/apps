@@ -1,10 +1,16 @@
 package by.teachmeskills.service;
 
+import by.teachmeskills.api.products.ProductRequest;
+import by.teachmeskills.api.products.ProductResponse;
 import by.teachmeskills.api.users.UserRequest;
 import by.teachmeskills.api.users.UserResponse;
+import by.teachmeskills.entity.Product;
 import by.teachmeskills.entity.User;
+import by.teachmeskills.mapper.ProductMapper;
 import by.teachmeskills.mapper.UserMapper;
 import by.teachmeskills.repository.FileRepository;
+import by.teachmeskills.repository.OrderInterfaceRepository;
+import by.teachmeskills.repository.ProductRepository;
 import by.teachmeskills.repository.UserInterfaceRepository;
 
 import java.util.Collection;
@@ -50,5 +56,30 @@ public class UserService {
         Collection<UserResponse> list = repository.allUsers().stream().map(userMapper::toResponse).toList();
 
         return list;
+    }
+
+    public UserResponse search(Long id)
+    {
+        UserInterfaceRepository repository = new FileRepository();
+        User repositoryID = repository.findID(Long.valueOf(id));
+        if(repositoryID == null || repositoryID.equals(0)){
+            throw new RuntimeException("Неверное ID");
+        }
+        UserMapper userMapper = new UserMapper();
+        return userMapper.toResponse(repositoryID);
+
+    }
+    public void deleteById(Long id){
+        UserInterfaceRepository repository = new FileRepository();
+        repository.deleteById(id);
+    }
+
+    public UserResponse add(UserRequest userRequest){
+        UserMapper userMapper = new UserMapper();
+        User user = userMapper.toEntity(userRequest);
+        UserInterfaceRepository repository = new FileRepository();
+        user.setRole("Client");
+        repository.add(user);
+        return userMapper.toResponse(user);
     }
 }

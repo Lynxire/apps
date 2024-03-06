@@ -30,18 +30,21 @@ public class DispatcherServlet extends HttpServlet {
             productController.all(req, resp);
         } else if (req.getParameter("regSubmit") != null) {
             usersController.registration(req, resp);
-        } else if (req.getParameter("logSubmit") != null){
+        } else if (req.getParameter("logSubmit") != null) {
             usersController.authentication(req, resp);
         } else if (req.getParameter("allUsers") != null) {
             usersController.all(req, resp);
-        } else if (req.getParameter("allClient") != null){
+        } else if (req.getParameter("allClient") != null) {
             productController.allClient(req, resp);
+        } else if (req.getParameter("searchUser") != null) {
+            usersController.search(req, resp);
+        } else if (req.getParameter("deleteUser") != null) {
+            usersController.delete(req, resp);
+        }else if (req.getParameter("addUser") != null) {
+            usersController.add(req, resp);
         }
 
     }
-
-
-
 
 
 }

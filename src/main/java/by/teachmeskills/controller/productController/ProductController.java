@@ -67,6 +67,6 @@ public class ProductController{
         ProductUpdate productUpdate = new ProductUpdate();
         Collection<ProductResponse> products = productUpdate.all();
         req.setAttribute("products", products);
-        req.getRequestDispatcher("/jsp/client.jsp").forward(req, resp);
+        req.getRequestDispatcher("/jsp/client/client.jsp").forward(req, resp);
     }
 }
