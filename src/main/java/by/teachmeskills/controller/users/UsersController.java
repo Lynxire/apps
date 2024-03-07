@@ -47,7 +47,6 @@ public class UsersController {
         HttpSession session = req.getSession();
         session.setAttribute("user", authentication);
 
-//        req.setAttribute("user", user.getEmail());
         if(authentication.getRole().equals("Admin")){
             req.getRequestDispatcher("/jsp/admin/admin.jsp").forward(req, resp);
         }

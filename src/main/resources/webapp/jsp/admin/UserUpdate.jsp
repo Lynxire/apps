@@ -24,10 +24,10 @@
         </div>
         <!-- Другие поля ввода для редактирования пользователя -->
         <!-- Кнопки для добавления, удаления и поиска -->
-        <button type="submit" class="btn btn-primary" name="addUser" value="add"  formaction="http://localhost:8080/apps/dispatcherServlet" formmethod="post">Add User</button>
-        <button type="submit" class="btn btn-danger" name="deleteUser" formaction="http://localhost:8080/apps/dispatcherServlet" formmethod="post">Delete User</button>
-        <button type="submit" class="btn btn-info" name="searchUser" value="search"  formaction="http://localhost:8080/apps/dispatcherServlet" formmethod="post">Search by ID</button>
-        <button type="submit" class="btn btn-info" name="allUsers" value="all"  formaction="http://localhost:8080/apps/dispatcherServlet" formmethod="post">All Users</button>
+        <button type="submit" class="btn btn-primary" name="addUser" value="add"  formaction="http://localhost:8080/apps/admin" formmethod="post">Add User</button>
+        <button type="submit" class="btn btn-danger" name="deleteUser" formaction="http://localhost:8080/apps/admin" formmethod="post">Delete User</button>
+        <button type="submit" class="btn btn-info" name="searchUser" value="search"  formaction="http://localhost:8080/apps/admin" formmethod="post">Search by ID</button>
+        <button type="submit" class="btn btn-info" name="allUsers" value="all"  formaction="http://localhost:8080/apps/admin" formmethod="post">All Users</button>
         <br>
         <br>
         <br>

@@ -24,10 +24,10 @@
         </div>
         <!-- Другие поля ввода для редактирования пользователя -->
         <!-- Кнопки для добавления, удаления и поиска -->
-        <button type="submit" class="btn btn-primary" name="add" value="add"  formaction="http://localhost:8080/apps/dispatcherServlet" formmethod="post">Add Product</button>
-        <button type="submit" class="btn btn-danger" name="delete" formaction="http://localhost:8080/apps/dispatcherServlet" formmethod="post">Delete Product</button>
-        <button type="submit" class="btn btn-info" name="search" value="search"  formaction="http://localhost:8080/apps/dispatcherServlet" formmethod="post">Search by ID</button>
-        <button type="submit" class="btn btn-info" name="all" value="all"  formaction="http://localhost:8080/apps/dispatcherServlet" formmethod="post">All Product</button>
+        <button type="submit" class="btn btn-primary" name="add" value="add"  formaction="http://localhost:8080/apps/admin" formmethod="post">Add Product</button>
+        <button type="submit" class="btn btn-danger" name="delete" formaction="http://localhost:8080/apps/admin" formmethod="post">Delete Product</button>
+        <button type="submit" class="btn btn-info" name="search" value="search"  formaction="http://localhost:8080/apps/admin" formmethod="post">Search by ID</button>
+        <button type="submit" class="btn btn-info" name="all" value="all"  formaction="http://localhost:8080/apps/admin" formmethod="post">All Product</button>
         <br>
         <br>
         <br>

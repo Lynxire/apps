@@ -16,13 +16,18 @@ public class Filter implements jakarta.servlet.Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpSession session = req.getSession(false);
-        if(session == null){
-            req.getRequestDispatcher("/html/Eror.html").forward(req, response);
+        User user = (User) session.getAttribute("user");
+        if(session == null || user == null){
+            req.setAttribute("error","Авторизируйтесь");
+            req.getRequestDispatcher("/jsp/exception/error.jsp").forward(req, response);
         }
 
-        User user = (User) session.getAttribute("user");
-        String authentication=req.getParameter("logSubmit");
-        if (authentication!=null){
+        if (!user.getRole().equals("Admin")){
+            req.setAttribute("error","недостаточно прав");
+            req.getRequestDispatcher("/jsp/exception/error.jsp").forward(req, response);
+
+        }
+        else {
             chain.doFilter(request,response);
         }
     }
