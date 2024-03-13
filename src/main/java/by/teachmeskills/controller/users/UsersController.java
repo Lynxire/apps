@@ -16,12 +16,12 @@ import java.util.Collection;
 
 public class UsersController {
     @SneakyThrows
-    public void registration(HttpServletRequest req, HttpServletResponse resp){
+    public void registration(HttpServletRequest req, HttpServletResponse resp) {
         String name = req.getParameter("regName");
         String email = req.getParameter("regEmail");
         String login = req.getParameter("regLogin");
         String password = req.getParameter("regPassword");
-        if(email.isEmpty() || login.isEmpty() || password.isEmpty() || name.isEmpty()){
+        if (email.isEmpty() || login.isEmpty() || password.isEmpty() || name.isEmpty()) {
             req.getRequestDispatcher("/html/Eror.html").forward(req, resp);
         }
         UserRequest userRequest = new UserRequest();
@@ -32,11 +32,12 @@ public class UsersController {
         userRequest.setLogin(login);
         userService.registration(userRequest);
     }
+
     @SneakyThrows
-    public void authentication(HttpServletRequest req, HttpServletResponse resp){
+    public void authentication(HttpServletRequest req, HttpServletResponse resp) {
         String email = req.getParameter("logEmail");
         String password = req.getParameter("logPassword");
-        if(email.isEmpty()||password.isEmpty()){
+        if (email.isEmpty() || password.isEmpty()) {
             req.getRequestDispatcher("/html/Eror.html").forward(req, resp);
         }
         User user = new User();
@@ -47,16 +48,16 @@ public class UsersController {
         HttpSession session = req.getSession();
         session.setAttribute("user", authentication);
 
-        if(authentication.getRole().equals("Admin")){
+        if (authentication.getRole().equals("Admin")) {
             req.getRequestDispatcher("/jsp/admin/admin.jsp").forward(req, resp);
-        }
-        else {
+        } else {
             req.getRequestDispatcher("/jsp/client/client.jsp").forward(req, resp);
         }
 
     }
+
     @SneakyThrows
-        public void all(HttpServletRequest req, HttpServletResponse resp) {
+    public void all(HttpServletRequest req, HttpServletResponse resp) {
         UserService userService = new UserService();
         Collection<UserResponse> users = userService.all();
         req.setAttribute("users", users);
@@ -74,13 +75,14 @@ public class UsersController {
         req.setAttribute("idUsers", id);
         req.getRequestDispatcher("/jsp/admin/UserUpdate.jsp").forward(req, resp);
     }
+
     @SneakyThrows
-    public void     add(HttpServletRequest req, HttpServletResponse resp) {
+    public void add(HttpServletRequest req, HttpServletResponse resp) {
         String name = req.getParameter("name");
         String login = req.getParameter("login");
         String password = req.getParameter("password");
         String email = req.getParameter("email");
-        if(login.isEmpty() || password.isEmpty() || name.isEmpty() || email.isEmpty()){
+        if (login.isEmpty() || password.isEmpty() || name.isEmpty() || email.isEmpty()) {
             req.getRequestDispatcher("/html/Eror.html").forward(req, resp);
         }
         UserRequest userRequest = new UserRequest();

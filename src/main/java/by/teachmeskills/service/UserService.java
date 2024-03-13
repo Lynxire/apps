@@ -56,7 +56,7 @@ public class UserService {
     public UserResponse search(Long id)
     {
         UserInterfaceRepository repository = new JdbcUsersRepository();
-        User repositoryID = repository.findID(Long.valueOf(id));
+        User repositoryID = repository.findByID(Long.valueOf(id));
         if(repositoryID == null || repositoryID.equals(0)){
             throw new RuntimeException("Неверное ID");
         }

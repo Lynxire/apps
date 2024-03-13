@@ -60,7 +60,7 @@ public class JdbcUsersRepository implements UserInterfaceRepository {
 
     @SneakyThrows
     @Override
-    public User findID(Long id) {
+    public User findByID(Long id) {
         Connection connect = connection.getConnect();
         PreparedStatement preparedStatement = connect.prepareStatement("SELECT * FROM apps.users WHERE id = ?");
         preparedStatement.setLong(1, id);

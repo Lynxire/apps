@@ -35,7 +35,7 @@ public class ProductRepository implements OrderInterfaceRepository {
     }
 
     @Override
-    public Product findID(Long id) {
+    public Product findByID(Long id) {
         Optional<Product> first = allProduct().stream().filter(product -> product.getId().equals(id))
                 .findFirst();
 

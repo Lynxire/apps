@@ -14,7 +14,7 @@ public class ProductUpdate {
     public ProductResponse search(Long id)
     {
         OrderInterfaceRepository repository = new ProductRepository();
-        Product repositoryID = repository.findID(Long.valueOf(id));
+        Product repositoryID = repository.findByID(Long.valueOf(id));
         if(repositoryID == null || repositoryID.equals(0)){
             throw new RuntimeException("Неверное ID");
         }

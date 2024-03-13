@@ -10,5 +10,5 @@ public interface UserInterfaceRepository {
     public void deleteById(Long Id);
     public Collection<User> allUsers();
 
-    public User findID(Long id);
+    public User findByID(Long id);
 }

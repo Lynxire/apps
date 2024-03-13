@@ -39,7 +39,7 @@ public class FileRepository implements UserInterfaceRepository {
     }
 
     @Override
-    public User findID(Long id) {
+    public User findByID(Long id) {
         Optional<User> list = allUsers().stream().filter(user -> user.getId().equals(id))
                 .findFirst();
 
@@ -48,22 +48,6 @@ public class FileRepository implements UserInterfaceRepository {
         }
         return list.get();
     }
-
-//    @Override
-//    public void usersEdit(Long id, String name, String login, String password, String email) {
-//        List<User> userList = findID(id);
-//        if (userList != null && !userList.isEmpty()) {
-//            User userToUpdate = userList.get(0);
-//
-//
-//            userToUpdate.setName(name);
-//            userToUpdate.setLogin(login);
-//            userToUpdate.setPassword(password);
-//            userToUpdate.setEmail(email);
-//
-//            serializable(userList);
-//        }
-//    }
 
     public void serializable(Object object) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("D:\\Java\\apps\\src\\main\\resources\\test.txt"))) {

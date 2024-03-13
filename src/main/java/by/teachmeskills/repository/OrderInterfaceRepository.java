@@ -10,5 +10,5 @@ public interface OrderInterfaceRepository {
     public void deleteById(Long Id);
     public Collection<Product> allProduct();
 
-    public Product findID(Long id);
+    public Product findByID(Long id);
 }
