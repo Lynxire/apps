@@ -8,10 +8,7 @@ import by.teachmeskills.entity.Product;
 import by.teachmeskills.entity.User;
 import by.teachmeskills.mapper.ProductMapper;
 import by.teachmeskills.mapper.UserMapper;
-import by.teachmeskills.repository.FileRepository;
-import by.teachmeskills.repository.OrderInterfaceRepository;
-import by.teachmeskills.repository.ProductRepository;
-import by.teachmeskills.repository.UserInterfaceRepository;
+import by.teachmeskills.repository.*;
 
 import java.util.Collection;
 import java.util.List;
@@ -51,7 +48,7 @@ public class UserService {
     }
 
     public Collection<UserResponse> all() {
-        UserInterfaceRepository repository = new FileRepository();
+        UserInterfaceRepository repository = new JdbcUsersRepository();
         UserMapper userMapper = new UserMapper();
         Collection<UserResponse> list = repository.allUsers().stream().map(userMapper::toResponse).toList();
 
