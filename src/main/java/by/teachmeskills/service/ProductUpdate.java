@@ -5,7 +5,7 @@ import by.teachmeskills.api.products.ProductResponse;
 import by.teachmeskills.entity.Product;
 import by.teachmeskills.mapper.ProductMapper;
 import by.teachmeskills.repository.OrderInterfaceRepository;
-import by.teachmeskills.repository.ProductRepository;
+import by.teachmeskills.repository.impl.product.ProductRepository;
 
 import java.util.Collection;
 

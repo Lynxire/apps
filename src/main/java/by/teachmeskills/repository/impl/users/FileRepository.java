@@ -1,7 +1,8 @@
-package by.teachmeskills.repository;
+package by.teachmeskills.repository.impl.users;
 
 import by.teachmeskills.entity.Product;
 import by.teachmeskills.entity.User;
+import by.teachmeskills.repository.UserInterfaceRepository;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
