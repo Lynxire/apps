@@ -22,7 +22,8 @@ public class UsersController {
         String login = req.getParameter("regLogin");
         String password = req.getParameter("regPassword");
         if (email.isEmpty() || login.isEmpty() || password.isEmpty() || name.isEmpty()) {
-            req.getRequestDispatcher("/html/Eror.html").forward(req, resp);
+            req.setAttribute("error","Заполните данные для регистрации");
+            req.getRequestDispatcher("/jsp/exception/error.jsp").forward(req, resp);
         }
         UserRequest userRequest = new UserRequest();
         UserService userService = new UserService();
@@ -38,7 +39,8 @@ public class UsersController {
         String email = req.getParameter("logEmail");
         String password = req.getParameter("logPassword");
         if (email.isEmpty() || password.isEmpty()) {
-            req.getRequestDispatcher("/html/Eror.html").forward(req, resp);
+            req.setAttribute("error","Заполните данные для входа");
+            req.getRequestDispatcher("/jsp/exception/error.jsp").forward(req, resp);
         }
         User user = new User();
         UserService userService = new UserService();
@@ -68,7 +70,8 @@ public class UsersController {
     public void search(HttpServletRequest req, HttpServletResponse resp) {
         String parameter = req.getParameter("idUser");
         if (parameter.isEmpty() || parameter.equals("0")) {
-            req.getRequestDispatcher("/html/Eror.html").forward(req, resp);
+            req.setAttribute("error","ID некорректный или поле не заполнено");
+            req.getRequestDispatcher("/jsp/exception/error.jsp").forward(req, resp);
         }
         UserService userService = new UserService();
         UserResponse id = userService.search(Long.valueOf(parameter));
@@ -83,7 +86,8 @@ public class UsersController {
         String password = req.getParameter("password");
         String email = req.getParameter("email");
         if (login.isEmpty() || password.isEmpty() || name.isEmpty() || email.isEmpty()) {
-            req.getRequestDispatcher("/html/Eror.html").forward(req, resp);
+            req.setAttribute("error","Не все поля заполнены");
+            req.getRequestDispatcher("/jsp/exception/error.jsp").forward(req, resp);
         }
         UserRequest userRequest = new UserRequest();
         UserService userService = new UserService();
@@ -101,7 +105,8 @@ public class UsersController {
     public void delete(HttpServletRequest req, HttpServletResponse resp) {
         String parameter = req.getParameter("idUser");
         if (parameter.isEmpty()) {
-            req.getRequestDispatcher("/html/Eror.html").forward(req, resp);
+            req.setAttribute("error","ID некорректный или поле не заполнено");
+            req.getRequestDispatcher("/jsp/exception/error.jsp").forward(req, resp);
         }
         UserService userService = new UserService();
         userService.deleteById(Long.valueOf(parameter));

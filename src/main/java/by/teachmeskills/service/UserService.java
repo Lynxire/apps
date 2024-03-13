@@ -14,7 +14,7 @@ import java.util.Optional;
 
 public class UserService {
     public User authentication(User user) {
-        UserInterfaceRepository repository = new FileRepository();
+        UserInterfaceRepository repository = new JdbcUsersRepository();
         List<User> list = repository.allUsers().stream().filter(user1 -> user1.getEmail().equals(user.getEmail()))
                 .filter(user2 -> user2.getPassword().equals(user.getPassword()))
                 .toList();
@@ -28,7 +28,7 @@ public class UserService {
     public void registration(UserRequest userRequest) {
         UserMapper userMapper = new UserMapper();
         User user = userMapper.toEntity(userRequest);
-        UserInterfaceRepository repository = new FileRepository();
+        UserInterfaceRepository repository = new JdbcUsersRepository();
         Optional<User> optional = repository.allUsers().stream().filter(user1 -> user1.getLogin().equals(userRequest.getLogin()))
                 .findFirst();
         Optional<User> optional1 = repository.allUsers().stream().filter(user1 -> user1.getRole().equals("Admin"))
@@ -65,14 +65,14 @@ public class UserService {
 
     }
     public void deleteById(Long id){
-        UserInterfaceRepository repository = new FileRepository();
+        UserInterfaceRepository repository = new JdbcUsersRepository();
         repository.deleteById(id);
     }
 
     public UserResponse add(UserRequest userRequest){
         UserMapper userMapper = new UserMapper();
         User user = userMapper.toEntity(userRequest);
-        UserInterfaceRepository repository = new FileRepository();
+        UserInterfaceRepository repository = new JdbcUsersRepository();
         user.setRole("Client");
         repository.add(user);
         return userMapper.toResponse(user);

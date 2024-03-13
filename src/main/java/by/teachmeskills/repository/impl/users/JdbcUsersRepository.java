@@ -18,11 +18,23 @@ public class JdbcUsersRepository implements UserInterfaceRepository {
 
 
     JDBCConnection connection = new PostgreSQL();
-
-
+    @SneakyThrows
     @Override
     public void add(User user) {
-
+        Connection connect = connection.getConnect();
+        PreparedStatement preparedStatementMax = connect.prepareStatement("select max(id) from apps.users");
+        ResultSet resultSet = preparedStatementMax.executeQuery();
+        resultSet.next();
+        long maxId = resultSet.getLong(1);
+        PreparedStatement preparedStatement = connect.prepareStatement( " insert into apps.users(id, \"name\", login, password, email, role)  " +
+                "values (?,?,?,?,?,?)");
+        preparedStatement.setLong(1, ++maxId);
+        preparedStatement.setString(2, user.getName());
+        preparedStatement.setString(3, user.getPassword());
+        preparedStatement.setString(4, user.getEmail());
+        preparedStatement.setString(5, user.getEmail());
+        preparedStatement.setString(6, user.getRole());
+        preparedStatement.executeUpdate();
     }
 
     @SneakyThrows
@@ -53,8 +65,13 @@ public class JdbcUsersRepository implements UserInterfaceRepository {
         return users;
     }
 
+    @SneakyThrows
     @Override
     public void deleteById(Long Id) {
+        Connection connect = connection.getConnect();
+        PreparedStatement preparedStatement = connect.prepareStatement("DELETE From apps.users WHERE id = ?");
+        preparedStatement.setLong(1, Id);
+        preparedStatement.executeUpdate();
 
     }
 

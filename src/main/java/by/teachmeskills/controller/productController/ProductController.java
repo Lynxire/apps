@@ -14,7 +14,8 @@ public class ProductController{
     public void search(HttpServletRequest req, HttpServletResponse resp) {
         String parameter = req.getParameter("id");
         if (parameter.isEmpty() || parameter.equals("0")) {
-            req.getRequestDispatcher("/html/Eror.html").forward(req, resp);
+            req.setAttribute("error","ID некорректный или поле не заполнено");
+            req.getRequestDispatcher("/jsp/exception/error.jsp").forward(req, resp);
         }
         ProductUpdate productUpdate = new ProductUpdate();
         ProductResponse id = productUpdate.search(Long.valueOf(parameter));
@@ -29,7 +30,8 @@ public class ProductController{
         String name = req.getParameter("name");
         String quantity = req.getParameter("quantity");
         if(sum.isEmpty() || code.isEmpty() || name.isEmpty() || quantity.isEmpty()){
-            req.getRequestDispatcher("/html/Eror.html").forward(req, resp);
+            req.setAttribute("error","Не все поля заполнены");
+            req.getRequestDispatcher("/jsp/exception/error.jsp").forward(req, resp);
         }
         ProductRequest order = new ProductRequest();
         ProductUpdate productUpdate = new ProductUpdate();
@@ -47,7 +49,8 @@ public class ProductController{
     public void delete(HttpServletRequest req, HttpServletResponse resp) {
         String parameter = req.getParameter("id");
         if (parameter.isEmpty()) {
-            req.getRequestDispatcher("/html/Eror.html").forward(req, resp);
+            req.setAttribute("error","ID некорректный или поле не заполнено");
+            req.getRequestDispatcher("/jsp/exception/error.jsp").forward(req, resp);
         }
         ProductUpdate productUpdate = new ProductUpdate();
         productUpdate.deleteById(Long.valueOf(parameter));
