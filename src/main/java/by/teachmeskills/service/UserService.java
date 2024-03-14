@@ -22,7 +22,7 @@ public class UserService {
             throw new RuntimeException("Пользователь не найден");
         }
 
-        return list.get(0);
+        return list.getFirst();
     }
 
     public void registration(UserRequest userRequest) {
@@ -37,7 +37,7 @@ public class UserService {
         if (optional.isPresent()) {
             throw new RuntimeException("Пользователь с таким логином существует");
         }
-        if (!optional1.isPresent()) {
+        if (optional1.isEmpty()) {
             user.setRole("Admin");
         }else {
             user.setRole("Client");
@@ -56,7 +56,7 @@ public class UserService {
     public UserResponse search(Long id)
     {
         UserInterfaceRepository repository = new JdbcUsersRepository();
-        User repositoryID = repository.findByID(Long.valueOf(id));
+        User repositoryID = repository.findByID(id);
         if(repositoryID == null || repositoryID.equals(0)){
             throw new RuntimeException("Неверное ID");
         }
