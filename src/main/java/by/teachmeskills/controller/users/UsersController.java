@@ -1,11 +1,8 @@
 package by.teachmeskills.controller.users;
 
-import by.teachmeskills.api.products.ProductRequest;
-import by.teachmeskills.api.products.ProductResponse;
 import by.teachmeskills.api.users.UserRequest;
 import by.teachmeskills.api.users.UserResponse;
 import by.teachmeskills.entity.User;
-import by.teachmeskills.service.ProductUpdate;
 import by.teachmeskills.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -49,6 +46,7 @@ public class UsersController {
         User authentication = userService.authentication(user);
         HttpSession session = req.getSession();
         session.setAttribute("user", authentication);
+
 
         if (authentication.getRole().equals("Admin")) {
             req.getRequestDispatcher("/jsp/admin/admin.jsp").forward(req, resp);

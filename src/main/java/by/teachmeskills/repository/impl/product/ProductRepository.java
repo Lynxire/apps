@@ -1,7 +1,7 @@
 package by.teachmeskills.repository.impl.product;
 
 import by.teachmeskills.entity.Product;
-import by.teachmeskills.repository.OrderInterfaceRepository;
+import by.teachmeskills.repository.ProductInterfaceRepository;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -12,7 +12,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-public class ProductRepository implements OrderInterfaceRepository {
+public class ProductRepository implements ProductInterfaceRepository {
     @Override
     public void add(Object object) {
         List<Product> productList = deserializable();

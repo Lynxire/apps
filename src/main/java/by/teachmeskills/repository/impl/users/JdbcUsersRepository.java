@@ -52,14 +52,7 @@ public class JdbcUsersRepository implements UserInterfaceRepository {
             String email = resultSet.getString("email");
             String role = resultSet.getString("role");
 
-            User user = new User();
-            user.setId(Long.valueOf(id));
-            user.setName(name);
-            user.setLogin(login);
-            user.setPassword(password);
-            user.setEmail(email);
-            user.setRole(role);
-
+            User user = new User(Long.valueOf(id), name, login , password, email, role);
             users.add(user);
         }
         return users;
