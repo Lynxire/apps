@@ -73,6 +73,9 @@ public class UserService {
         UserMapper userMapper = new UserMapper();
         User user = userMapper.toEntity(userRequest);
         UserInterfaceRepository repository = new JdbcUsersRepository();
+        if (user.getEmail().isEmpty() || user.getLogin().isEmpty() || user.getPassword().isEmpty() || user.getName().isEmpty()){
+            return null;
+        }
         user.setRole("Client");
         repository.add(user);
         return userMapper.toResponse(user);
