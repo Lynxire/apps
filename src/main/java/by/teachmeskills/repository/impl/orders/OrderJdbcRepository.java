@@ -14,9 +14,9 @@ public class OrderJdbcRepository implements OrderInterfaceRepository {
 
     @SneakyThrows
     @Override
-    public void add(Long userId, Long cost) {
+    public void add(Long userId) {
         Connection con = connection.getConnect();
-        PreparedStatement preparedStatementMaxId = con.prepareStatement("SELECT max(id) from apps.orders where ?");
+        PreparedStatement preparedStatementMaxId = con.prepareStatement("SELECT max(id) from apps.orders");
         ResultSet resultSet = preparedStatementMaxId.executeQuery();
         resultSet.next();
         long maxId = resultSet.getLong(1);

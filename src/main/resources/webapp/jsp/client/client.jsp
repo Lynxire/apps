@@ -17,11 +17,14 @@
             <ul>
                 <c:forEach var="product" items="${products}">
                     <li><c:out value="${product}" /></li>
-                    <button type="submit" name="allClient">Добавить в корзину</button>
+
                 </c:forEach>
             </ul>
             <button type="submit" name="allClient">Все товары</button>
-            <button type="submit" name="allClient">Добавить в корзину</button>
+            <input type="text" name="idProduct" placeholder="id">
+            <input type="text" name="ProductCount" placeholder="count">
+            <button type="submit" name="addProductByBucket">Добавить в корзину</button>
+
         </div>
     </form>
 

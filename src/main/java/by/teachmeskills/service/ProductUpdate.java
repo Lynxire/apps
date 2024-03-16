@@ -12,18 +12,18 @@ import java.util.Collection;
 
 public class ProductUpdate {
 
-    public ProductResponse search(Long id)
-    {
+    public ProductResponse search(Long id) {
         ProductInterfaceRepository repository = new ProductJdbcRepository();
         Product repositoryID = repository.findByID(Long.valueOf(id));
-        if(repositoryID == null || repositoryID.equals(0)){
+        if (repositoryID == null || repositoryID.equals(0)) {
             throw new RuntimeException("Неверное ID");
         }
         ProductMapper productMapper = new ProductMapper();
         return productMapper.toResponse(repositoryID);
 
     }
-    public ProductResponse add(ProductRequest productRequest){
+
+    public ProductResponse add(ProductRequest productRequest) {
         ProductMapper productMapper = new ProductMapper();
         Product product = productMapper.toEntity(productRequest);
         ProductInterfaceRepository productInterfaceRepository = new ProductJdbcRepository();
@@ -31,18 +31,17 @@ public class ProductUpdate {
         return productMapper.toResponse(product);
     }
 
-    public void deleteById(Long id){
+    public void deleteById(Long id) {
         ProductInterfaceRepository repository = new ProductJdbcRepository();
         repository.deleteById(id);
     }
 
-    public Collection<ProductResponse> all(){
+    public Collection<ProductResponse> all() {
         ProductInterfaceRepository repository = new ProductJdbcRepository();
-        ProductMapper productMapper=new ProductMapper();
+        ProductMapper productMapper = new ProductMapper();
         Collection<Product> products = repository.allProduct();
-        Collection<ProductResponse>  productResponses=products.stream()
-                .map(product ->productMapper.toResponse(product)).
-                toList();
+        Collection<ProductResponse> productResponses = products.stream().map(product -> productMapper.toResponse(product))
+                        .toList();
         return productResponses;
     }
 

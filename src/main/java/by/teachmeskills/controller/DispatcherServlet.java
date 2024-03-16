@@ -1,5 +1,6 @@
 package by.teachmeskills.controller;
 
+import by.teachmeskills.controller.backet.BucketController;
 import by.teachmeskills.controller.productController.ProductController;
 import by.teachmeskills.controller.users.UsersController;
 import jakarta.servlet.ServletException;
@@ -20,6 +21,7 @@ public class DispatcherServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ProductController productController = new ProductController();
         UsersController usersController = new UsersController();
+        BucketController bucketController = new BucketController();
         if (req.getParameter("search") != null) {
             productController.search(req, resp);
         } else if (req.getParameter("add") != null) {
@@ -42,6 +44,8 @@ public class DispatcherServlet extends HttpServlet {
             usersController.delete(req, resp);
         }else if (req.getParameter("addUser") != null) {
             usersController.add(req, resp);
+        } else if(req.getParameter("addProductByBucket") != null) {
+            bucketController.addOrderByBucket(req, resp);
         }
 
     }
