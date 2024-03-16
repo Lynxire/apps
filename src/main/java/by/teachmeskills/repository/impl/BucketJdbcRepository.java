@@ -33,10 +33,13 @@ public class BucketJdbcRepository implements BucketInterfaceRepository {
         quantity.setLong(1, productId);
         ResultSet executeQuery = quantity.executeQuery();
         executeQuery.next();
-        long queryLong = executeQuery.getLong(1);
+        long quantityLong = executeQuery.getLong(1);
+        if(quantityLong < 1){
+            throw new RuntimeException("Товар закончился");
+        }
 
         PreparedStatement preparedStatementCount = connect.prepareStatement("UPDATE apps.products SET quantity = ? where id = ?");
-        preparedStatementCount.setLong(1,--queryLong);
+        preparedStatementCount.setLong(1,--quantityLong);
         preparedStatementCount.setLong(2,productId);
         preparedStatementCount.executeUpdate();
 
