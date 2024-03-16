@@ -39,7 +39,7 @@ public class BucketJdbcRepository implements BucketInterfaceRepository {
         }
 
         PreparedStatement preparedStatementCount = connect.prepareStatement("UPDATE apps.products SET quantity = ? where id = ?");
-        preparedStatementCount.setLong(1,--quantityLong);
+        preparedStatementCount.setLong(1,quantityLong - count);
         preparedStatementCount.setLong(2,productId);
         preparedStatementCount.executeUpdate();
 

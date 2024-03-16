@@ -16,7 +16,14 @@
             <h2>Товары</h2>
             <ul>
                 <c:forEach var="product" items="${products}">
-                    <li><c:out value="${product}" /></li>
+                    ID - <c:out value="${product.id}" />
+                    <br>
+                    Товар - <c:out value="${product.name}" />
+                    <br>
+                    Цена - <c:out value="${product.sum}" />
+                    <br>
+                    Количество - <c:out value="${product.quantity}" />
+                    <h1>-------------------------------</h1>
 
                 </c:forEach>
             </ul>
