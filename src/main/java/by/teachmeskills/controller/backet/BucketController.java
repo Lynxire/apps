@@ -15,6 +15,7 @@ public class BucketController {
     @SneakyThrows
     public void addOrderByBucket(HttpServletRequest req, HttpServletResponse resp) {
         String idProduct = req.getParameter("idProduct");
+        String ProductCount = req.getParameter("ProductCount");
         if (idProduct.isEmpty() || idProduct.equals("0")) {
             req.setAttribute("error","Неверный ID товара");
             req.getRequestDispatcher("/jsp/exception/error.jsp").forward(req, resp);
@@ -23,7 +24,7 @@ public class BucketController {
         User user = (User) session.getAttribute("user");
         OrderService orderService = new OrderService();
         OrderResponse orderResponse = orderService.addUserByOrder(user.getId());
-        orderService.addOrderByBucket(orderResponse, Long.valueOf(idProduct));
+        orderService.addOrderByBucket(orderResponse, Long.valueOf(idProduct),Long.valueOf(ProductCount));
         req.getRequestDispatcher("/jsp/client/client.jsp").forward(req, resp);
     }
 }

@@ -20,9 +20,12 @@ public class OrderService {
         Order order = repository.add(userId);
         return orderMapper.toResponse(order);
     }
-    public void addOrderByBucket(OrderResponse orderResponse, Long productId){
+    public void addOrderByBucket(OrderResponse orderResponse, Long productId, Long count){
         Long orderId = orderResponse.getId();
         BucketInterfaceRepository repository = new BucketJdbcRepository();
-        repository.add(orderId, productId);
+        if(orderId == 0 || productId == 0 || count == 0){
+            throw new RuntimeException("Неверные значения в полях");
+        }
+        repository.add(orderId, productId, count);
     }
 }
