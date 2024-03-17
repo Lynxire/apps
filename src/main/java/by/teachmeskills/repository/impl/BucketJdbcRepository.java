@@ -53,8 +53,11 @@ public class BucketJdbcRepository implements BucketInterfaceRepository {
 
     @SneakyThrows
     @Override
-    public void makeOrder(Long userId, Long orderId, Long productId, Long count) {
+    public void makeOrder(Long userId) {
         Connection connect = connection.getConnect();
-        connect.prepareStatement("");
+        PreparedStatement preparedStatement = connect.prepareStatement("UPDATE apps.orders SET status = ? where userid = ?");
+        preparedStatement.setString(1, "Оформлен");
+        preparedStatement.setLong(2, userId);
+        preparedStatement.executeUpdate();
     }
 }

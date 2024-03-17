@@ -12,8 +12,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.SneakyThrows;
 
+import java.util.Collection;
+
 public class BucketController {
-    BucketResponse bucketResponse;
+
 
     @SneakyThrows
     public void addOrderByBucket(HttpServletRequest req, HttpServletResponse resp) {
@@ -27,16 +29,15 @@ public class BucketController {
         User user = (User) session.getAttribute("user");
         OrderService orderService = new OrderService();
         OrderResponse orderResponse = orderService.addUserByOrder(user.getId());
-        bucketResponse = orderService.addOrderByBucket(orderResponse, Long.valueOf(idProduct), Long.valueOf(ProductCount));
+        orderService.addOrderByBucket(orderResponse, Long.valueOf(idProduct), Long.valueOf(ProductCount));
         req.getRequestDispatcher("/jsp/client/client.jsp").forward(req, resp);
     }
-    //Не реализовано
     @SneakyThrows
     public void makeOrder(HttpServletRequest req, HttpServletResponse resp){
         HttpSession session = req.getSession(false);
         User user = (User) session.getAttribute("user");
         OrderService orderService = new OrderService();
-        orderService.makeOrder(user.getId(), bucketResponse);
+        orderService.makeOrder(user.getId());
         req.getRequestDispatcher("/jsp/client/bucket.jsp").forward(req, resp);
     }
 }

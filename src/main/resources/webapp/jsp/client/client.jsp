@@ -32,6 +32,7 @@
             <input type="text" name="ProductCount" placeholder="count">
             <button type="submit" name="addProductByBucket">Добавить в корзину</button>
 
+            <p><a href="jsp/client/bucket.jsp">Корзина</a>
         </div>
     </form>
 

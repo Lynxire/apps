@@ -31,12 +31,9 @@ public class OrderService {
 
 
     }
-    public void makeOrder(Long userId, BucketResponse bucketResponse){
+    public void makeOrder(Long userId){
         BucketInterfaceRepository repository = new BucketJdbcRepository();
-        if(bucketResponse.getOrderId() == 0 || bucketResponse.getProductId() == 0 || bucketResponse.getCount() == 0){
-            throw new RuntimeException("Корзина пустая");
-        }
-        repository.makeOrder(userId,bucketResponse.getOrderId(),bucketResponse.getProductId(),bucketResponse.getCount());
+        repository.makeOrder(userId);
 
     }
 }
