@@ -12,6 +12,7 @@ import by.teachmeskills.repository.impl.BucketJdbcRepository;
 import by.teachmeskills.repository.impl.orders.OrderJdbcRepository;
 
 public class OrderService {
+
     public OrderResponse addUserByOrder(Long userId){
         OrderInterfaceRepository repository = new OrderJdbcRepository();
         OrderMapper orderMapper = new OrderMapper();
@@ -30,12 +31,12 @@ public class OrderService {
 
 
     }
-    public void makeOrder(Long userId, Long orderId, Long productId, Long count){
+    public void makeOrder(Long userId, BucketResponse bucketResponse){
         BucketInterfaceRepository repository = new BucketJdbcRepository();
-        if(orderId == 0 || productId == 0 || count == 0){
+        if(bucketResponse.getOrderId() == 0 || bucketResponse.getProductId() == 0 || bucketResponse.getCount() == 0){
             throw new RuntimeException("Корзина пустая");
         }
-        repository.makeOrder(userId,orderId,productId,count);
+        repository.makeOrder(userId,bucketResponse.getOrderId(),bucketResponse.getProductId(),bucketResponse.getCount());
 
     }
 }
