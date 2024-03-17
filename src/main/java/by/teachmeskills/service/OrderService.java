@@ -1,17 +1,15 @@
 package by.teachmeskills.service;
 
+import by.teachmeskills.api.BucketResponse;
 import by.teachmeskills.api.order.OrderResponse;
 import by.teachmeskills.entity.Bucket;
 import by.teachmeskills.entity.Order;
-import by.teachmeskills.entity.Product;
+import by.teachmeskills.mapper.BucketMapper;
 import by.teachmeskills.mapper.OrderMapper;
-import by.teachmeskills.mapper.ProductMapper;
 import by.teachmeskills.repository.BucketInterfaceRepository;
 import by.teachmeskills.repository.OrderInterfaceRepository;
-import by.teachmeskills.repository.ProductInterfaceRepository;
 import by.teachmeskills.repository.impl.BucketJdbcRepository;
 import by.teachmeskills.repository.impl.orders.OrderJdbcRepository;
-import by.teachmeskills.repository.impl.product.ProductJdbcRepository;
 
 public class OrderService {
     public OrderResponse addUserByOrder(Long userId){
@@ -20,12 +18,24 @@ public class OrderService {
         Order order = repository.add(userId);
         return orderMapper.toResponse(order);
     }
-    public void addOrderByBucket(OrderResponse orderResponse, Long productId, Long count){
+    public BucketResponse addOrderByBucket(OrderResponse orderResponse, Long productId, Long count){
         Long orderId = orderResponse.getId();
         BucketInterfaceRepository repository = new BucketJdbcRepository();
         if(orderId == 0 || productId == 0 || count == 0){
             throw new RuntimeException("Неверные значения в полях");
         }
-        repository.add(orderId, productId, count);
+        Bucket bucket = repository.add(orderId, productId, count);
+        BucketMapper bucketMapper = new BucketMapper();
+        return bucketMapper.toResponse(bucket);
+
+
+    }
+    public void makeOrder(Long userId, Long orderId, Long productId, Long count){
+        BucketInterfaceRepository repository = new BucketJdbcRepository();
+        if(orderId == 0 || productId == 0 || count == 0){
+            throw new RuntimeException("Корзина пустая");
+        }
+        repository.makeOrder(userId,orderId,productId,count);
+
     }
 }

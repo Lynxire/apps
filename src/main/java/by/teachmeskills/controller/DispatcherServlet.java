@@ -46,6 +46,8 @@ public class DispatcherServlet extends HttpServlet {
             usersController.add(req, resp);
         } else if(req.getParameter("addProductByBucket") != null) {
             bucketController.addOrderByBucket(req, resp);
+        }   else if(req.getParameter("makeOrder") != null) {
+            bucketController.makeOrder(req, resp);
         }
 
     }
