@@ -19,13 +19,14 @@ public class OrderService {
         Order order = repository.add(userId);
         return orderMapper.toResponse(order);
     }
-    public BucketResponse addOrderByBucket(OrderResponse orderResponse, Long productId, Long count){
-        Long orderId = orderResponse.getId();
+    public BucketResponse addOrderByBucket(Long userId, Long productId, Long count){
+        OrderResponse orderResponse = addUserByOrder(userId);
+        Long id = orderResponse.getId();
         BucketInterfaceRepository repository = new BucketJdbcRepository();
-        if(orderId == 0 || productId == 0 || count == 0){
+        if(id == 0 || productId == 0 || count == 0){
             throw new RuntimeException("Неверные значения в полях");
         }
-        Bucket bucket = repository.add(orderId, productId, count);
+        Bucket bucket = repository.add(id, productId, count);
         BucketMapper bucketMapper = new BucketMapper();
         return bucketMapper.toResponse(bucket);
 

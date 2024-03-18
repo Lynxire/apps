@@ -22,8 +22,7 @@ public class BucketController {
         HttpSession session = req.getSession(false);
         User user = (User) session.getAttribute("user");
         OrderService orderService = new OrderService();
-        OrderResponse orderResponse = orderService.addUserByOrder(user.getId());
-        orderService.addOrderByBucket(orderResponse, Long.valueOf(idProduct), Long.valueOf(ProductCount));
+        orderService.addOrderByBucket(user.getId(), Long.valueOf(idProduct), Long.valueOf(ProductCount));
         req.getRequestDispatcher("/jsp/client/client.jsp").forward(req, resp);
     }
     @SneakyThrows
