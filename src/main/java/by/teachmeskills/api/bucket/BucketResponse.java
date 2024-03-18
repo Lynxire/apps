@@ -1,4 +1,4 @@
-package by.teachmeskills.api;
+package by.teachmeskills.api.bucket;
 
 import lombok.Data;
 

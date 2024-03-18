@@ -71,6 +71,8 @@ public class BucketJdbcRepository implements BucketInterfaceRepository {
     public List getBucketsByOrderId(List orderIds) {
         return null;
     }
+
+
     @SneakyThrows
     public void timerDeleteOrdersByBucket(Long orderId,Long count, Long productId){
         final String tableDeleteBucket = "DELETE FROM apps.bucket where orderid = ?";

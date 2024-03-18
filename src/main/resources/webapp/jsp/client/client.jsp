@@ -7,11 +7,24 @@
 
 <head>
     <title>Товары</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Добавляем стили для кнопки */
+        .btn-cart {
+            position: fixed;
+            top: 0;
+            right: 0;
+            margin: 10px;
+        }
+    </style>
 </head>
 
 <body>
 <div>
     <form method="post" action="http://localhost:8080/apps/dispatcherServlet">
+        <div class="container">
+            <a href="jsp/client/bucket.jsp" class="btn btn-primary btn-cart">Корзина</a>
+        </div>
         <div>
             <h2>Товары</h2>
             <ul>
@@ -32,7 +45,6 @@
             <input type="text" name="ProductCount" placeholder="count">
             <button type="submit" name="addProductByBucket">Добавить в корзину</button>
 
-            <p><a href="jsp/client/bucket.jsp">Корзина</a>
         </div>
     </form>
 
@@ -40,7 +52,9 @@
 
 
 
-
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>

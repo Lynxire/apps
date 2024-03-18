@@ -1,18 +1,12 @@
 package by.teachmeskills.controller.backet;
 
-import by.teachmeskills.api.BucketResponse;
 import by.teachmeskills.api.order.OrderResponse;
-import by.teachmeskills.api.products.ProductResponse;
-import by.teachmeskills.entity.Bucket;
 import by.teachmeskills.entity.User;
 import by.teachmeskills.service.OrderService;
-import by.teachmeskills.service.ProductUpdate;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.SneakyThrows;
-
-import java.util.Collection;
 
 public class BucketController {
 

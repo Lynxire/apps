@@ -1,6 +1,6 @@
 package by.teachmeskills.service;
 
-import by.teachmeskills.api.BucketResponse;
+import by.teachmeskills.api.bucket.BucketResponse;
 import by.teachmeskills.api.order.OrderResponse;
 import by.teachmeskills.entity.Bucket;
 import by.teachmeskills.entity.Order;

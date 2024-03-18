@@ -3,12 +3,14 @@ package by.teachmeskills.repository.impl.orders;
 import by.teachmeskills.config.JDBCConnection;
 import by.teachmeskills.config.impl.PostgreSQL;
 import by.teachmeskills.entity.Order;
+import by.teachmeskills.entity.Product;
 import by.teachmeskills.repository.OrderInterfaceRepository;
 import lombok.SneakyThrows;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.List;
 
 public class OrderJdbcRepository implements OrderInterfaceRepository {
     JDBCConnection connection = new PostgreSQL();
@@ -35,5 +37,7 @@ public class OrderJdbcRepository implements OrderInterfaceRepository {
         return order;
 
     }
+
+
 
 }
