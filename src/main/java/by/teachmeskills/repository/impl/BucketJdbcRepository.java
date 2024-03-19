@@ -3,12 +3,14 @@ package by.teachmeskills.repository.impl;
 import by.teachmeskills.config.JDBCConnection;
 import by.teachmeskills.config.impl.PostgreSQL;
 import by.teachmeskills.entity.Bucket;
+import by.teachmeskills.entity.Order;
 import by.teachmeskills.repository.BucketInterfaceRepository;
 import lombok.SneakyThrows;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -67,14 +69,34 @@ public class BucketJdbcRepository implements BucketInterfaceRepository {
         preparedStatement.executeUpdate();
     }
 
+    @SneakyThrows
     @Override
-    public List<Bucket> getBucketsByOrderId(Long orderId) {
-        return null;
+    public List<Bucket> getBucketsByProductId(Long productId) {
+        Connection con = connection.getConnect();
+        PreparedStatement preparedStatementMaxId = con.prepareStatement("SELECT * from apps.bucket WHERE productid = ?");
+        preparedStatementMaxId.setLong(1, productId);
+        ResultSet resultSet = preparedStatementMaxId.executeQuery();
+        Bucket bucket = new Bucket();
+        List<Bucket> buckets = new ArrayList<>();
+        while (resultSet.next()) {
+            Long id = resultSet.getLong("id");
+            Long orderid = resultSet.getLong("orderid");
+            Long productid = resultSet.getLong("productid");
+            Long count = resultSet.getLong("count");
+            bucket.setId(id);
+            bucket.setOrderId(orderid);
+            bucket.setProductId(productid);
+            bucket.setCount(count);
+            buckets.add(bucket);
+
+        }
+        return buckets;
+
     }
 
 
     @SneakyThrows
-    public void timerDeleteOrdersByBucket(Long orderId,Long count, Long productId){
+    public void timerDeleteOrdersByBucket(Long orderId, Long count, Long productId) {
         final String tableDeleteBucket = "DELETE FROM apps.bucket where orderid = ?";
         final String tableDeleteOrders = "DELETE FROM apps.orders where id = ?";
         final String selectCountProduct = "UPDATE apps.products SET quantity = ? where id = ?";
@@ -96,7 +118,6 @@ public class BucketJdbcRepository implements BucketInterfaceRepository {
         preparedStatementProduct.setLong(2, productId);
 
 
-
         PreparedStatement preparedStatementBucket = connect.prepareStatement(tableDeleteBucket);
         preparedStatementBucket.setLong(1, orderId);
         PreparedStatement preparedStatementOrders = connect.prepareStatement(tableDeleteOrders);
@@ -107,7 +128,7 @@ public class BucketJdbcRepository implements BucketInterfaceRepository {
 
             @SneakyThrows
             public void run() {
-                if(statusString.equals("Создан") && statusString != null){
+                if (statusString.equals("Создан") && statusString != null) {
                     preparedStatementProduct.executeUpdate();
                     preparedStatementBucket.executeUpdate();
                     preparedStatementOrders.executeUpdate();

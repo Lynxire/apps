@@ -3,13 +3,14 @@ package by.teachmeskills.repository.impl.orders;
 import by.teachmeskills.config.JDBCConnection;
 import by.teachmeskills.config.impl.PostgreSQL;
 import by.teachmeskills.entity.Order;
-import by.teachmeskills.entity.Product;
 import by.teachmeskills.repository.OrderInterfaceRepository;
 import lombok.SneakyThrows;
 
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrderJdbcRepository implements OrderInterfaceRepository {
@@ -24,13 +25,13 @@ public class OrderJdbcRepository implements OrderInterfaceRepository {
         resultSet.next();
         long maxId = resultSet.getLong(1);
         maxId++;
-        PreparedStatement preparedStatement = con.prepareStatement( " insert into apps.orders(id, userId, status)  " +
+        PreparedStatement preparedStatement = con.prepareStatement(" insert into apps.orders(id, userId, status)  " +
                 "values (?,?,?)");
 
         String status = "Создан";
         preparedStatement.setLong(1, maxId);
         preparedStatement.setLong(2, userId);
-        preparedStatement.setString(3,status);
+        preparedStatement.setString(3, status);
         preparedStatement.executeUpdate();
 
         Order order = new Order(maxId, userId, status);
@@ -38,9 +39,24 @@ public class OrderJdbcRepository implements OrderInterfaceRepository {
 
     }
 
+    @SneakyThrows
     @Override
-    public Order getById(Long orderId) {
-        return null;
+    public Order getById(Long userId) {
+        Connection con = connection.getConnect();
+        PreparedStatement preparedStatement = con.prepareStatement("SELECT * FROM apps.orders WHERE userid = ?");;
+        preparedStatement.setLong(1, userId);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        Order order = new Order();
+        while (resultSet.next()) {
+            Long id = resultSet.getLong("id");
+            Long userid = resultSet.getLong("userid");
+            String status = resultSet.getString("status");
+            order.setId(id);
+            order.setUserId(userid);
+            order.setStatus(status);
+        }
+        return order;
+
     }
 
 
