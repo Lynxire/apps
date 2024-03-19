@@ -68,7 +68,7 @@ public class BucketJdbcRepository implements BucketInterfaceRepository {
     }
 
     @Override
-    public List getBucketsByOrderId(List orderIds) {
+    public List<Bucket> getBucketsByOrderId(Long orderId) {
         return null;
     }
 

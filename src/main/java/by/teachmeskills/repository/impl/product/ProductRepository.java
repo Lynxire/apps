@@ -45,6 +45,11 @@ public class ProductRepository implements ProductInterfaceRepository {
         return first.get();
     }
 
+    @Override
+    public List<Product> getProductsByIds(List<Long> ids) {
+        return null;
+    }
+
 
     public void serializable(Object object) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("D:\\Java\\apps\\src\\main\\resources\\orders.txt"))) {

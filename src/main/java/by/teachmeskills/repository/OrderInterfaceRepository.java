@@ -9,4 +9,6 @@ import java.util.List;
 public interface OrderInterfaceRepository {
     public Order add(Long userId);
 
+    public Order getById(Long orderId);
+
 }

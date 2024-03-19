@@ -9,6 +9,7 @@ import by.teachmeskills.repository.impl.product.ProductJdbcRepository;
 import by.teachmeskills.repository.impl.product.ProductRepository;
 
 import java.util.Collection;
+import java.util.List;
 
 public class ProductUpdate {
 
@@ -41,7 +42,16 @@ public class ProductUpdate {
         ProductMapper productMapper = new ProductMapper();
         Collection<Product> products = repository.allProduct();
         Collection<ProductResponse> productResponses = products.stream().map(product -> productMapper.toResponse(product))
-                        .toList();
+                .toList();
+        return productResponses;
+    }
+
+    public List<ProductResponse>getProductsByIds(List<Long> ids){
+        ProductInterfaceRepository repository = new ProductJdbcRepository();
+        List<Product> products=repository.getProductsByIds(ids);
+        ProductMapper productMapper = new ProductMapper();
+        List<ProductResponse> productResponses = products.stream().map(product -> productMapper.toResponse(product))
+                .toList();
         return productResponses;
     }
 
