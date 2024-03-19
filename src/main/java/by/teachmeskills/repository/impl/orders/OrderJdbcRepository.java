@@ -38,6 +38,10 @@ public class OrderJdbcRepository implements OrderInterfaceRepository {
 
     }
 
+    @Override
+    public Order getById(Long orderId) {
+        return null;
+    }
 
 
 }
