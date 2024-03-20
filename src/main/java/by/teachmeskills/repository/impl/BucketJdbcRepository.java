@@ -75,9 +75,9 @@ public class BucketJdbcRepository implements BucketInterfaceRepository {
         PreparedStatement preparedStatementMaxId = con.prepareStatement("SELECT * from apps.bucket WHERE orderid = ?");
         preparedStatementMaxId.setLong(1, orderId);
         ResultSet resultSet = preparedStatementMaxId.executeQuery();
-        Bucket bucket = new Bucket();
         List<Bucket> buckets = new ArrayList<>();
         while (resultSet.next()) {
+            Bucket bucket = new Bucket();
             Long id = resultSet.getLong("id");
             Long orderid = resultSet.getLong("orderid");
             Long productid = resultSet.getLong("productid");
