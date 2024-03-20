@@ -24,24 +24,27 @@ public class OrderJdbcRepository implements OrderInterfaceRepository {
         ResultSet resultSet = preparedStatementMaxId.executeQuery();
         resultSet.next();
         long maxId = resultSet.getLong(1);
-        maxId++;
-        PreparedStatement preparedStatement = con.prepareStatement(" insert into apps.orders(id, userId, status)  " +
-                "values (?,?,?)");
+            maxId++;
+            PreparedStatement preparedStatement = con.prepareStatement(" insert into apps.orders(id, userId, status)  " +
+                    "values (?,?,?)");
 
-        String status = "Создан";
-        preparedStatement.setLong(1, maxId);
-        preparedStatement.setLong(2, userId);
-        preparedStatement.setString(3, status);
-        preparedStatement.executeUpdate();
+            String status = "Создан";
+            preparedStatement.setLong(1, maxId);
+            preparedStatement.setLong(2, userId);
+            preparedStatement.setString(3, status);
+            preparedStatement.executeUpdate();
+            Order order = new Order(maxId, userId, status);
 
-        Order order = new Order(maxId, userId, status);
+
+
+
         return order;
 
     }
 
     @SneakyThrows
     @Override
-    public Order getById(Long userId) {
+    public Order getOrderByUserid(Long userId) {
         Connection con = connection.getConnect();
         PreparedStatement preparedStatement = con.prepareStatement("SELECT * FROM apps.orders WHERE userid = ?");;
         preparedStatement.setLong(1, userId);

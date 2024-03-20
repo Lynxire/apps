@@ -9,7 +9,6 @@ import java.util.List;
 public class OrderResponse {
     Long id;
     Long userId;
-    Long cost;
     String status;
     List<ProductResponse> products;
 }

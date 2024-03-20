@@ -5,15 +5,12 @@ import by.teachmeskills.api.order.OrderResponse;
 import by.teachmeskills.api.products.ProductResponse;
 import by.teachmeskills.entity.Bucket;
 import by.teachmeskills.entity.Order;
-import by.teachmeskills.entity.Product;
 import by.teachmeskills.mapper.BucketMapper;
 import by.teachmeskills.mapper.OrderMapper;
 import by.teachmeskills.repository.BucketInterfaceRepository;
 import by.teachmeskills.repository.OrderInterfaceRepository;
-import by.teachmeskills.repository.ProductInterfaceRepository;
 import by.teachmeskills.repository.impl.BucketJdbcRepository;
 import by.teachmeskills.repository.impl.orders.OrderJdbcRepository;
-import by.teachmeskills.repository.impl.product.ProductJdbcRepository;
 
 import java.util.List;
 
@@ -34,15 +31,25 @@ public class OrderService {
 //        List<Long> goodIds=buckets.stream().map(bucket -> bucket.getProductId()).toList();
 //        List<ProductResponse> productResponses=productUpdate.getProductsByIds(goodIds);
 //        OrderInterfaceRepository orderInterfaceRepository=new OrderJdbcRepository();
-//        Order order=orderInterfaceRepository.getById(orderId);
+//        Order order=orderInterfaceRepository.getOrderByUserid(orderId);
 //        OrderMapper orderMapper=new OrderMapper();
 //        OrderResponse orderResponse=orderMapper.toResponse(order);
 //        orderResponse.setProducts(productResponses);
 //        return orderResponse;
 //    }
     public BucketResponse addOrderByBucket(Long userId, Long productId, Long count){
-        OrderResponse orderResponse = addUserByOrder(userId);
-        Long id = orderResponse.getId();
+        OrderInterfaceRepository orderInterfaceRepository = new OrderJdbcRepository();
+        Order orderByUserid = orderInterfaceRepository.getOrderByUserid(userId);
+
+
+        Long id = 0L;
+        if(orderByUserid.getUserId() == userId && orderByUserid.getUserId() != null && orderByUserid.getStatus().equals("Создан")){
+            id = orderByUserid.getId();
+        }
+        else {
+            OrderResponse orderResponse = addUserByOrder(userId);
+            id = orderResponse.getId();
+        }
         BucketInterfaceRepository repository = new BucketJdbcRepository();
         if(id == 0 || productId == 0 || count == 0){
             throw new RuntimeException("Неверные значения в полях");
@@ -58,16 +65,24 @@ public class OrderService {
 
     }
 
-    public OrderResponse allOrders(Long userId, Long productId){
+    // не возвращает лист продуктов
+    public OrderResponse allOrders(Long userId){
         OrderInterfaceRepository orderJdbcRepository = new OrderJdbcRepository();
+        Order orderByUserid = orderJdbcRepository.getOrderByUserid(userId);
         BucketInterfaceRepository bucketRepository = new BucketJdbcRepository();
+        Long getOrderId = 0L;
+        if(orderByUserid.getStatus().equals("Создан")){
+            getOrderId = orderByUserid.getId();
+        }
+        else {
+            getOrderId = null;
+        }
+        List<Bucket> bucketsByOrderId = bucketRepository.getBucketsByOrderId(getOrderId);
+        List<Long> listProductId = bucketsByOrderId.stream().map(bucket -> bucket.getProductId()).toList();
         ProductUpdate productUpdate = new ProductUpdate();
-        List<Bucket> getBucketsByProductId = bucketRepository.getBucketsByProductId(productId);
-        List<Long> list = getBucketsByProductId.stream().map(Bucket::getProductId).toList();
-        List<ProductResponse> productsByIds = productUpdate.getProductsByIds(list);
-        Order byId = orderJdbcRepository.getById(userId);
+        List<ProductResponse> productsByIds = productUpdate.getProductsByIds(listProductId);
         OrderMapper orderMapper=new OrderMapper();
-        OrderResponse orderResponse=orderMapper.toResponse(byId);
+        OrderResponse orderResponse=orderMapper.toResponse(orderByUserid);
         orderResponse.setProducts(productsByIds);
         return orderResponse;
 

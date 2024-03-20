@@ -3,7 +3,6 @@ package by.teachmeskills.repository.impl;
 import by.teachmeskills.config.JDBCConnection;
 import by.teachmeskills.config.impl.PostgreSQL;
 import by.teachmeskills.entity.Bucket;
-import by.teachmeskills.entity.Order;
 import by.teachmeskills.repository.BucketInterfaceRepository;
 import lombok.SneakyThrows;
 
@@ -71,10 +70,10 @@ public class BucketJdbcRepository implements BucketInterfaceRepository {
 
     @SneakyThrows
     @Override
-    public List<Bucket> getBucketsByProductId(Long productId) {
+    public List<Bucket> getBucketsByOrderId(Long orderId) {
         Connection con = connection.getConnect();
-        PreparedStatement preparedStatementMaxId = con.prepareStatement("SELECT * from apps.bucket WHERE productid = ?");
-        preparedStatementMaxId.setLong(1, productId);
+        PreparedStatement preparedStatementMaxId = con.prepareStatement("SELECT * from apps.bucket WHERE orderid = ?");
+        preparedStatementMaxId.setLong(1, orderId);
         ResultSet resultSet = preparedStatementMaxId.executeQuery();
         Bucket bucket = new Bucket();
         List<Bucket> buckets = new ArrayList<>();

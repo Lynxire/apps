@@ -23,7 +23,7 @@
 <div>
     <form method="post" action="http://localhost:8080/apps/dispatcherServlet">
         <div class="container">
-            <a href="jsp/client/bucket.jsp" class="btn btn-primary btn-cart">Корзина</a>
+            <button type="submit" name="bucket" formaction="http://localhost:8080/apps/dispatcherServlet" formmethod="post" class="btn btn-primary btn-cart">Корзина</button>
         </div>
         <div>
             <h2>Товары</h2>

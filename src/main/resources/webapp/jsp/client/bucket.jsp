@@ -10,6 +10,7 @@
 </head>
 
 <body>
+${orders}
 <div>
     <form method="post" action="http://localhost:8080/apps/dispatcherServlet">
         <div>
@@ -19,17 +20,7 @@
         </div>
     </form>
 </div>
-<c:forEach var="product" items="${products}">
-    ID - <c:out value="${product.id}" />
-    <br>
-    Товар - <c:out value="${product.name}" />
-    <br>
-    Цена - <c:out value="${product.sum}" />
-    <br>
-    Количество - <c:out value="${product.quantity}" />
-    <h1>-------------------------------</h1>
 
-</c:forEach>
 
 
 

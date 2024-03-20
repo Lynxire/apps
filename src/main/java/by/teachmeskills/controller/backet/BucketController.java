@@ -1,6 +1,7 @@
 package by.teachmeskills.controller.backet;
 
 import by.teachmeskills.api.order.OrderResponse;
+import by.teachmeskills.entity.Product;
 import by.teachmeskills.entity.User;
 import by.teachmeskills.service.OrderService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,6 +22,7 @@ public class BucketController {
         }
         HttpSession session = req.getSession(false);
         User user = (User) session.getAttribute("user");
+        session.setAttribute("productId", Long.valueOf(idProduct));
         OrderService orderService = new OrderService();
         orderService.addOrderByBucket(user.getId(), Long.valueOf(idProduct), Long.valueOf(ProductCount));
         req.getRequestDispatcher("/jsp/client/client.jsp").forward(req, resp);
@@ -32,5 +34,15 @@ public class BucketController {
         OrderService orderService = new OrderService();
         orderService.makeOrder(user.getId());
         req.getRequestDispatcher("/jsp/client/bucket.jsp").forward(req, resp);
+    }
+    @SneakyThrows
+    public void allOrders(HttpServletRequest req, HttpServletResponse resp){
+        HttpSession session = req.getSession(true);
+        User user = (User) session.getAttribute("user");
+        OrderService orderService = new OrderService();
+        OrderResponse orderResponse = orderService.allOrders(user.getId());
+        session.setAttribute("orders", orderResponse);
+        req.getRequestDispatcher("/jsp/client/bucket.jsp").forward(req, resp);
+
     }
 }

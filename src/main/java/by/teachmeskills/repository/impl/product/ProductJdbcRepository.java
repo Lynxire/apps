@@ -10,6 +10,7 @@ import lombok.SneakyThrows;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class ProductJdbcRepository implements ProductInterfaceRepository {
@@ -75,7 +76,7 @@ public class ProductJdbcRepository implements ProductInterfaceRepository {
     public List<Product> getProductsByIds(List<Long> ids) {
         List<Product> products = new ArrayList<>();
         Connection connect = connection.getConnect();
-        PreparedStatement preparedStatement = connect.prepareStatement("SELECT * FROM apps.products WHERE id in (?)");
+        PreparedStatement preparedStatement = connect.prepareStatement("SELECT * FROM apps.products WHERE id = ANY(?)");
         Array array = connect.createArrayOf("NUMERIC", ids.toArray());
         preparedStatement.setArray(1, array);
         ResultSet resultSet = preparedStatement.executeQuery();
