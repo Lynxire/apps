@@ -138,4 +138,24 @@ public class BucketJdbcRepository implements BucketInterfaceRepository {
         timer.schedule(task, time);
     }
 
+    @SneakyThrows
+    @Override
+    public void сleanBucketByOrderId(Long orderId, Long productId, Long count) {
+        final String tableDeleteBucket = "DELETE FROM apps.bucket where orderid = ?";
+        final String tableDeleteOrders = "DELETE FROM apps.orders where id = ?";
+        final String selectCountProduct = "UPDATE apps.products SET quantity = ? where id = ?";
+
+
+        PreparedStatement preparedStatementBucket = connect.prepareStatement(tableDeleteBucket);
+        preparedStatementBucket.setLong(1, orderId);
+        preparedStatementBucket.executeUpdate();
+
+        PreparedStatement preparedStatementOrders = connect.prepareStatement(tableDeleteOrders);
+        preparedStatementOrders.setLong(1, orderId);
+        preparedStatementOrders.executeUpdate();
+
+
+
+    }
+
 }

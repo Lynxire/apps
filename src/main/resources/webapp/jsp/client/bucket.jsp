@@ -16,6 +16,7 @@ ${orders}
         <div>
             <h2>Корзина</h2>
             <button type="submit" name="makeOrder">Оформить заказ</button>
+            <button type="submit" name="cleanBucket">Очистить корзину</button>
 
         </div>
     </form>

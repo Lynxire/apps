@@ -65,7 +65,6 @@ public class OrderService {
 
     }
 
-    // не возвращает лист продуктов
     public OrderResponse allOrders(Long userId){
         OrderInterfaceRepository orderJdbcRepository = new OrderJdbcRepository();
         Order orderByUserid = orderJdbcRepository.getOrderByUserid(userId);
