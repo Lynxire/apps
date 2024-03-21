@@ -6,6 +6,7 @@ import by.teachmeskills.entity.Bucket;
 import by.teachmeskills.repository.BucketInterfaceRepository;
 import lombok.SneakyThrows;
 
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -140,21 +141,57 @@ public class BucketJdbcRepository implements BucketInterfaceRepository {
 
     @SneakyThrows
     @Override
-    public void сleanBucketByOrderId(Long orderId, Long productId, Long count) {
+    public void сleanBucket(Long orderId, List<Long> productId, List<Long> count) {
         final String tableDeleteBucket = "DELETE FROM apps.bucket where orderid = ?";
         final String tableDeleteOrders = "DELETE FROM apps.orders where id = ?";
         final String selectCountProduct = "UPDATE apps.products SET quantity = ? where id = ?";
 
+        PreparedStatement preparedStatementStatus = connect.prepareStatement("select status from apps.orders WHERE id = ?");
+        preparedStatementStatus.setLong(1, orderId);
+        ResultSet status = preparedStatementStatus.executeQuery();
+        status.next();
+        String statusString = status.getString(1);
 
+        PreparedStatement preparedStatementQuantity = connect.prepareStatement("SELECT quantity from apps.products WHERE id = ANY(?)");
+        Array array = connect.createArrayOf("INTEGER", productId.toArray());
+        preparedStatementQuantity.setArray(1, array);
+        ResultSet resultSet = preparedStatementQuantity.executeQuery();
+
+        List<Integer> quantityList = new ArrayList<>();
+        while (resultSet.next()){
+            Integer quantity = resultSet.getInt("quantity");
+            quantityList.add(quantity);
+        }
+
+
+
+        PreparedStatement preparedStatementProduct = connect.prepareStatement(selectCountProduct);
+        for (int i = 0; i < quantityList.size(); i++) {
+            Integer value = quantityList.get(i);
+            for (int j = 0; j < count.size(); j++) {
+                Long integer = count.get(j);
+                for (int k = 0; k < productId.size(); k++) {
+                    Long aLong = productId.get(k);
+                    preparedStatementProduct.setLong(1, value + integer);
+                    preparedStatementProduct.setLong(2, aLong);
+                }
+
+            }
+
+        }
         PreparedStatement preparedStatementBucket = connect.prepareStatement(tableDeleteBucket);
         preparedStatementBucket.setLong(1, orderId);
-        preparedStatementBucket.executeUpdate();
-
         PreparedStatement preparedStatementOrders = connect.prepareStatement(tableDeleteOrders);
         preparedStatementOrders.setLong(1, orderId);
-        preparedStatementOrders.executeUpdate();
 
-
+        if (statusString.equals("Создан") && statusString != null) {
+            preparedStatementProduct.executeUpdate();
+            preparedStatementBucket.executeUpdate();
+            preparedStatementOrders.executeUpdate();
+        }
+        else {
+            throw new RuntimeException("Корзина пустая, сформируйте заказ");
+        }
 
     }
 

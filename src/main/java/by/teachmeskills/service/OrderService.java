@@ -5,12 +5,15 @@ import by.teachmeskills.api.order.OrderResponse;
 import by.teachmeskills.api.products.ProductResponse;
 import by.teachmeskills.entity.Bucket;
 import by.teachmeskills.entity.Order;
+import by.teachmeskills.entity.Product;
 import by.teachmeskills.mapper.BucketMapper;
 import by.teachmeskills.mapper.OrderMapper;
 import by.teachmeskills.repository.BucketInterfaceRepository;
 import by.teachmeskills.repository.OrderInterfaceRepository;
+import by.teachmeskills.repository.ProductInterfaceRepository;
 import by.teachmeskills.repository.impl.BucketJdbcRepository;
 import by.teachmeskills.repository.impl.orders.OrderJdbcRepository;
+import by.teachmeskills.repository.impl.product.ProductJdbcRepository;
 
 import java.util.List;
 
@@ -73,8 +76,8 @@ public class OrderService {
         if(orderByUserid.getStatus().equals("Создан")){
             getOrderId = orderByUserid.getId();
         }
-        else {
-            getOrderId = null;
+        if(getOrderId == null) {
+            throw new RuntimeException("Корзина пустая");
         }
         List<Bucket> bucketsByOrderId = bucketRepository.getBucketsByOrderId(getOrderId);
         List<Long> listProductId = bucketsByOrderId.stream().map(bucket -> bucket.getProductId()).toList();
@@ -84,6 +87,21 @@ public class OrderService {
         OrderResponse orderResponse=orderMapper.toResponse(orderByUserid);
         orderResponse.setProducts(productsByIds);
         return orderResponse;
+
+    }
+
+    public void cleanBucket(Long userId){
+        OrderInterfaceRepository orderJdbcRepository = new OrderJdbcRepository();
+        Order orderByUserid = orderJdbcRepository.getOrderByUserid(userId);
+        BucketInterfaceRepository bucketRepository = new BucketJdbcRepository();
+        Long getOrderId = orderByUserid.getId();
+        List<Bucket> bucketsByOrderId = bucketRepository.getBucketsByOrderId(getOrderId);
+        List<Long> listProductId = bucketsByOrderId.stream().map(bucket -> bucket.getProductId()).toList();
+        List<Long> listCount = bucketsByOrderId.stream().map(Bucket::getCount).toList();
+
+
+        bucketRepository.сleanBucket(getOrderId,listProductId, listCount);
+
 
 
     }

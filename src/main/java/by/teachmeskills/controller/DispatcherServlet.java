@@ -50,6 +50,8 @@ public class DispatcherServlet extends HttpServlet {
             bucketController.makeOrder(req, resp);
         } else if(req.getParameter("bucket") != null) {
             bucketController.allOrders(req, resp);
+        }else if(req.getParameter("cleanBucket") != null) {
+            bucketController.cleanBucket(req, resp);
         }
 
     }

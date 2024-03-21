@@ -37,12 +37,22 @@ public class BucketController {
     }
     @SneakyThrows
     public void allOrders(HttpServletRequest req, HttpServletResponse resp){
-        HttpSession session = req.getSession(true);
+        HttpSession session = req.getSession(false);
         User user = (User) session.getAttribute("user");
         OrderService orderService = new OrderService();
         OrderResponse orderResponse = orderService.allOrders(user.getId());
         session.setAttribute("orders", orderResponse);
         req.getRequestDispatcher("/jsp/client/bucket.jsp").forward(req, resp);
 
+    }
+
+    @SneakyThrows
+    public void cleanBucket(HttpServletRequest req, HttpServletResponse resp){
+        HttpSession session = req.getSession(false);
+        User user = (User) session.getAttribute("user");
+        OrderService orderService = new OrderService();
+        orderService.cleanBucket(user.getId());
+        session.getAttribute("orders");
+        req.getRequestDispatcher("/jsp/client/bucket.jsp").forward(req, resp);
     }
 }

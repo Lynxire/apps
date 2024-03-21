@@ -8,5 +8,5 @@ public interface BucketInterfaceRepository {
     public Bucket add(Long orderId, Long productId, Long count);
     public void makeOrder(Long userId);
     List<Bucket> getBucketsByOrderId(Long orderId);
-    public void сleanBucketByOrderId(Long orderId, Long productId, Long count);
+    public void сleanBucket(Long orderId, List<Long> productId, List<Long> count);
 }

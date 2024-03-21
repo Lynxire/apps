@@ -49,6 +49,9 @@ public class ProductUpdate {
     public List<ProductResponse>getProductsByIds(List<Long> ids){
         ProductInterfaceRepository repository = new ProductJdbcRepository();
         List<Product> products=repository.getProductsByIds(ids);
+        if(products.isEmpty()){
+            throw new RuntimeException("Товары не добавлены");
+        }
         ProductMapper productMapper = new ProductMapper();
         List<ProductResponse> productResponses = products.stream().map(product -> productMapper.toResponse(product))
                 .toList();
