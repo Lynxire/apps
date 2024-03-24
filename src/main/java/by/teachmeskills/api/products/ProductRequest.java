@@ -1,9 +1,9 @@
-package by.teachmeskills.api.orders;
+package by.teachmeskills.api.products;
 
 import lombok.Data;
 
 @Data
-public class ProductResponse {
+public class ProductRequest {
     private Long id;
     private int code;
     private String name;

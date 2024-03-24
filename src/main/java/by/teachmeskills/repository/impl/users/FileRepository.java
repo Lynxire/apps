@@ -1,7 +1,8 @@
-package by.teachmeskills.repository;
+package by.teachmeskills.repository.impl.users;
 
 import by.teachmeskills.entity.Product;
 import by.teachmeskills.entity.User;
+import by.teachmeskills.repository.UserInterfaceRepository;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -38,30 +39,14 @@ public class FileRepository implements UserInterfaceRepository {
     }
 
     @Override
-    public List<User> findID(Long id) {
-        List<User> list = allUsers().stream().filter(user -> user.getId().equals(id))
-                .toList();
+    public User findByID(Long id) {
+        Optional<User> list = allUsers().stream().filter(user -> user.getId().equals(id))
+                .findFirst();
 
-        if (list.isEmpty()) {
+        if (!list.isPresent()) {
             return null;
         }
-        return list;
-    }
-
-    @Override
-    public void usersEdit(Long id, String name, String login, String password, String email) {
-        List<User> userList = findID(id);
-        if (userList != null && !userList.isEmpty()) {
-            User userToUpdate = userList.get(0);
-
-
-            userToUpdate.setName(name);
-            userToUpdate.setLogin(login);
-            userToUpdate.setPassword(password);
-            userToUpdate.setEmail(email);
-
-            serializable(userList);
-        }
+        return list.get();
     }
 
     public void serializable(Object object) {

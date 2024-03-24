@@ -10,19 +10,16 @@
 </head>
 
 <body>
+${orders}
 <div>
     <form method="post" action="http://localhost:8080/apps/dispatcherServlet">
         <div>
-            <h2>Товары</h2>
-            <ul>
-                <c:forEach var="product" items="${products}">
-                    <li><c:out value="${product}" /></li>
-                </c:forEach>
-            </ul>
-            <button type="submit" name="allClient">Все товары</button>
+            <h2>Корзина</h2>
+            <button type="submit" name="makeOrder">Оформить заказ</button>
+            <button type="submit" name="cleanBucket">Очистить корзину</button>
+
         </div>
     </form>
-
 </div>
 
 

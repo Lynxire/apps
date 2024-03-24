@@ -1,7 +1,7 @@
 package by.teachmeskills.mapper;
 
-import by.teachmeskills.api.orders.ProductRequest;
-import by.teachmeskills.api.orders.ProductResponse;
+import by.teachmeskills.api.products.ProductRequest;
+import by.teachmeskills.api.products.ProductResponse;
 import by.teachmeskills.entity.Product;
 
 public class ProductMapper {

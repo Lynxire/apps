@@ -10,6 +10,5 @@ public interface UserInterfaceRepository {
     public void deleteById(Long Id);
     public Collection<User> allUsers();
 
-    public List<User> findID(Long id);
-    public void usersEdit(Long id, String name, String login, String password, String email);
+    public User findByID(Long id);
 }

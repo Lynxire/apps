@@ -1,6 +1,7 @@
-package by.teachmeskills.repository;
+package by.teachmeskills.repository.impl.product;
 
 import by.teachmeskills.entity.Product;
+import by.teachmeskills.repository.ProductInterfaceRepository;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -11,7 +12,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-public class ProductRepository implements OrderInterfaceRepository {
+public class ProductRepository implements ProductInterfaceRepository {
     @Override
     public void add(Object object) {
         List<Product> productList = deserializable();
@@ -34,7 +35,7 @@ public class ProductRepository implements OrderInterfaceRepository {
     }
 
     @Override
-    public Product findID(Long id) {
+    public Product findByID(Long id) {
         Optional<Product> first = allProduct().stream().filter(product -> product.getId().equals(id))
                 .findFirst();
 
@@ -42,6 +43,11 @@ public class ProductRepository implements OrderInterfaceRepository {
             return null;
         }
         return first.get();
+    }
+
+    @Override
+    public List<Product> getProductsByIds(List<Long> ids) {
+        return null;
     }
 
 

@@ -2,24 +2,18 @@
 <%@ page import="java.util.*" %>
 <%@ page import="by.teachmeskills.entity.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<!doctype html>
 <html>
 
 <head>
-    <title>Пользователи</title>
-
+    <meta charset="utf-8">
+    <meta content="text/html">
+    <title>Ошибка</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
-<table>
-    <c:forEach var="logins" items="${login}">
-        <tr>
-            <td>Привет: ${logins}</td>
-        </tr>
-    </c:forEach>
-</table>
-
-
+<h2 class="eror">${error}</h2>
 
 </body>
 

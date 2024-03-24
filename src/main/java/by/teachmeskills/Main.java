@@ -1,10 +1,6 @@
 package by.teachmeskills;
 
-import by.teachmeskills.entity.Product;
-import by.teachmeskills.entity.User;
-import by.teachmeskills.repository.FileRepository;
-import by.teachmeskills.repository.OrderInterfaceRepository;
-import by.teachmeskills.repository.ProductRepository;
+import by.teachmeskills.repository.impl.users.FileRepository;
 import by.teachmeskills.repository.UserInterfaceRepository;
 
 import java.io.*;

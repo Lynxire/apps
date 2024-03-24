@@ -16,4 +16,15 @@ public class Product implements Serializable {
     private int sum;
     private int quantity;
 
+    public Product(){
+
+    }
+
+    public Product(Long id, int code, String name, int sum, int quantity) {
+        this.id = id;
+        this.code = code;
+        this.name = name;
+        this.sum = sum;
+        this.quantity = quantity;
+    }
 }
