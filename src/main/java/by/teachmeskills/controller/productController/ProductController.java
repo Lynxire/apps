@@ -2,7 +2,7 @@ package by.teachmeskills.controller.productController;
 
 import by.teachmeskills.api.products.ProductRequest;
 import by.teachmeskills.api.products.ProductResponse;
-import by.teachmeskills.service.ProductUpdate;
+import by.teachmeskills.service.ProductService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.SneakyThrows;
@@ -17,8 +17,8 @@ public class ProductController{
             req.setAttribute("error","ID некорректный или поле не заполнено");
             req.getRequestDispatcher("/jsp/exception/error.jsp").forward(req, resp);
         }
-        ProductUpdate productUpdate = new ProductUpdate();
-        ProductResponse id = productUpdate.search(Long.valueOf(parameter));
+        ProductService productService = new ProductService();
+        ProductResponse id = productService.search(Long.valueOf(parameter));
         req.setAttribute("id", id);
         req.getRequestDispatcher("/jsp/admin/ProductUpdate.jsp").forward(req, resp);
     }
@@ -34,12 +34,12 @@ public class ProductController{
             req.getRequestDispatcher("/jsp/exception/error.jsp").forward(req, resp);
         }
         ProductRequest order = new ProductRequest();
-        ProductUpdate productUpdate = new ProductUpdate();
+        ProductService productService = new ProductService();
         order.setSum(Integer.parseInt(sum));
         order.setCode(Integer.parseInt(code));
         order.setName(name);
         order.setQuantity(Integer.parseInt(quantity));
-        productUpdate.add(order);
+        productService.add(order);
         req.getRequestDispatcher("/jsp/admin/ProductUpdate.jsp").forward(req, resp);
 
 
@@ -52,8 +52,8 @@ public class ProductController{
             req.setAttribute("error","ID некорректный или поле не заполнено");
             req.getRequestDispatcher("/jsp/exception/error.jsp").forward(req, resp);
         }
-        ProductUpdate productUpdate = new ProductUpdate();
-        productUpdate.deleteById(Long.valueOf(parameter));
+        ProductService productService = new ProductService();
+        productService.deleteById(Long.valueOf(parameter));
         req.getRequestDispatcher("/jsp/admin/ProductUpdate.jsp").forward(req, resp);
 
 
@@ -61,14 +61,14 @@ public class ProductController{
 
     @SneakyThrows
     public void all(HttpServletRequest req, HttpServletResponse resp) {
-        ProductUpdate productUpdate = new ProductUpdate();
-        Collection<ProductResponse> products = productUpdate.all();
+        ProductService productService = new ProductService();
+        Collection<ProductResponse> products = productService.all();
         req.setAttribute("products", products);
         req.getRequestDispatcher("/jsp/admin/ProductUpdate.jsp").forward(req, resp);
     }@SneakyThrows
     public void allClient(HttpServletRequest req, HttpServletResponse resp) {
-        ProductUpdate productUpdate = new ProductUpdate();
-        Collection<ProductResponse> products = productUpdate.all();
+        ProductService productService = new ProductService();
+        Collection<ProductResponse> products = productService.all();
         req.setAttribute("products", products);
         req.getRequestDispatcher("/jsp/client/client.jsp").forward(req, resp);
     }

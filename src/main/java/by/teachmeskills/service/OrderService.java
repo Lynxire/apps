@@ -5,15 +5,12 @@ import by.teachmeskills.api.order.OrderResponse;
 import by.teachmeskills.api.products.ProductResponse;
 import by.teachmeskills.entity.Bucket;
 import by.teachmeskills.entity.Order;
-import by.teachmeskills.entity.Product;
 import by.teachmeskills.mapper.BucketMapper;
 import by.teachmeskills.mapper.OrderMapper;
 import by.teachmeskills.repository.BucketInterfaceRepository;
 import by.teachmeskills.repository.OrderInterfaceRepository;
-import by.teachmeskills.repository.ProductInterfaceRepository;
 import by.teachmeskills.repository.impl.BucketJdbcRepository;
 import by.teachmeskills.repository.impl.orders.OrderJdbcRepository;
-import by.teachmeskills.repository.impl.product.ProductJdbcRepository;
 
 import java.util.List;
 
@@ -81,8 +78,8 @@ public class OrderService {
         }
         List<Bucket> bucketsByOrderId = bucketRepository.getBucketsByOrderId(getOrderId);
         List<Long> listProductId = bucketsByOrderId.stream().map(bucket -> bucket.getProductId()).toList();
-        ProductUpdate productUpdate = new ProductUpdate();
-        List<ProductResponse> productsByIds = productUpdate.getProductsByIds(listProductId);
+        ProductService productService = new ProductService();
+        List<ProductResponse> productsByIds = productService.getProductsByIds(listProductId);
         OrderMapper orderMapper=new OrderMapper();
         OrderResponse orderResponse=orderMapper.toResponse(orderByUserid);
         orderResponse.setProducts(productsByIds);

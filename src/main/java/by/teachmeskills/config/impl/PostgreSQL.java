@@ -6,11 +6,10 @@ import lombok.SneakyThrows;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class PostgreSQL implements JDBCConnection {
+    public class PostgreSQL implements JDBCConnection {
     @Override
     @SneakyThrows
     public Connection getConnect() {
-        Connection connection = null;
         String url = "jdbc:postgresql://localhost:5432/shop";
         String username = "postgres";
         String password = "1111";//

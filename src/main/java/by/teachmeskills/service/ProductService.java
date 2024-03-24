@@ -6,21 +6,20 @@ import by.teachmeskills.entity.Product;
 import by.teachmeskills.mapper.ProductMapper;
 import by.teachmeskills.repository.ProductInterfaceRepository;
 import by.teachmeskills.repository.impl.product.ProductJdbcRepository;
-import by.teachmeskills.repository.impl.product.ProductRepository;
 
 import java.util.Collection;
 import java.util.List;
 
-public class ProductUpdate {
+public class ProductService {
 
     public ProductResponse search(Long id) {
         ProductInterfaceRepository repository = new ProductJdbcRepository();
-        Product repositoryID = repository.findByID(Long.valueOf(id));
-        if (repositoryID == null || repositoryID.equals(0)) {
+        Product product = repository.findByID(id);
+        if (product == null) {
             throw new RuntimeException("Неверное ID");
         }
         ProductMapper productMapper = new ProductMapper();
-        return productMapper.toResponse(repositoryID);
+        return productMapper.toResponse(product);
 
     }
 
