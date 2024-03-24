@@ -17,7 +17,12 @@ public class Filter implements jakarta.servlet.Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpSession session = req.getSession(false);
         User user = (User) session.getAttribute("user");
-        if(session == null || user == null){
+        if (session == null){
+            req.setAttribute("error","Не найдена ссесия");
+            req.getRequestDispatcher("/jsp/exception/error.jsp").forward(req, response);
+        }
+        if(user == null)
+        {
             req.setAttribute("error","Авторизируйтесь");
             req.getRequestDispatcher("/jsp/exception/error.jsp").forward(req, response);
         }
