@@ -23,20 +23,6 @@ public class OrderService {
         return orderMapper.toResponse(order);
     }
 
-//    public OrderResponse addGoodToOrder(Long orderId, Long productId, Long count){
-//        BucketInterfaceRepository repository = new BucketJdbcRepository();
-//        repository.add(orderId,productId,count);
-//        List<Bucket> buckets=repository.getBucketsByOrderId(orderId);
-//        ProductUpdate productUpdate=new ProductUpdate();
-//        List<Long> goodIds=buckets.stream().map(bucket -> bucket.getProductId()).toList();
-//        List<ProductResponse> productResponses=productUpdate.getProductsByIds(goodIds);
-//        OrderInterfaceRepository orderInterfaceRepository=new OrderJdbcRepository();
-//        Order order=orderInterfaceRepository.getOrderByUserid(orderId);
-//        OrderMapper orderMapper=new OrderMapper();
-//        OrderResponse orderResponse=orderMapper.toResponse(order);
-//        orderResponse.setProducts(productResponses);
-//        return orderResponse;
-//    }
     public BucketResponse addOrderByBucket(Long userId, Long productId, Long count){
         OrderInterfaceRepository orderInterfaceRepository = new OrderJdbcRepository();
         Order orderByUserid = orderInterfaceRepository.getOrderByUserid(userId);
